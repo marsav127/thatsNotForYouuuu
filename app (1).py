@@ -8,9 +8,9 @@ import streamlit.components.v1 as components
 # whether random objects are FOR WOMEN or FOR MEN.
 # Street Fighter, reimagined by a 13-year-old girl in 2004.
 #
-# The whole match runs client-side in one isolated HTML/JS screen. Fighters are
-# rendered through a low-res canvas and upscaled nearest-neighbour, so they read
-# as chunky 16-bit sprites; CRT scanlines sit over the whole cabinet.
+# Runs entirely client-side in one isolated HTML/JS screen. Fighters are drawn
+# into a low-res canvas and upscaled nearest-neighbour for chunky 16-bit sprites;
+# CRT scanlines sit over the whole cabinet.
 # ---------------------------------------------------------------------------
 
 st.set_page_config(page_title="THAT'S NOT FOR YOU", page_icon=":sparkles:", layout="wide")
@@ -151,12 +151,18 @@ RULINGS = [
 
 # ---------------------------------------------------------------------------
 # BONUS RULINGS  -  additive only; the originals above are untouched.
-# Hidden inside-joke Benito references that surface at random during the fight.
+# Hidden Benito / Bad Bunny inside jokes that surface at random in the fight.
+# (References to song/album/artist titles only - no lyrics.)
 # ---------------------------------------------------------------------------
 BONUS_RULINGS = [
     {"thing": "Benito", "verdict": "FOR WOMEN", "reason": "He's one of the girls."},
+    {"thing": "Bad Bunny", "verdict": "FOR WOMEN", "reason": "Ours. You may listen quietly."},
     {"thing": "Un Verano Sin Ti", "verdict": "FOR WOMEN", "reason": "Required reading."},
+    {"thing": "Yo Perreo Sola", "verdict": "FOR WOMEN", "reason": "The thesis."},
+    {"thing": "Titi Me Pregunto", "verdict": "FOR WOMEN", "reason": "She knows exactly what she did."},
+    {"thing": "Conejo Malo", "verdict": "NOT FOR MEN", "reason": "Did he ever once mention you?"},
     {"thing": "Perreo", "verdict": "FOR WOMEN", "reason": "A feminine science."},
+    {"thing": "Reggaeton", "verdict": "FOR WOMEN", "reason": "We invented moving like that."},
     {"thing": "Baggy jeans", "verdict": "FOR WOMEN", "reason": "We know who they're really for."},
 ]
 
@@ -234,7 +240,7 @@ html, body { background: transparent; overflow: hidden; }
 @media (max-width:560px){ .prompt-word{ font-size:18px; } }
 
 /* ===== STAGE ===== */
-#stage { position:absolute; left:0; right:0; top:130px; bottom:128px; z-index:4; overflow:hidden; }
+#stage { position:absolute; left:0; right:0; top:130px; bottom:112px; z-index:4; overflow:hidden; }
 .floor { position:absolute; left:-10%; right:-10%; bottom:0; height:42%;
   background: repeating-linear-gradient(90deg, rgba(255,143,223,.3) 0 3px, transparent 3px 44px),
               linear-gradient(180deg,#7a1fc0 0%,#ff5fc0 100%);
@@ -291,25 +297,32 @@ html, body { background: transparent; overflow: hidden; }
 @keyframes comboPop { 0%{transform:translateX(-50%) scale(0);} 35%{transform:translateX(-50%) scale(1.35);} 70%{transform:translateX(-50%) scale(1);} 100%{transform:translateX(-50%) scale(1); opacity:0;} }
 
 /* verdict + reason caption (bigger, lingers) */
-#reasonPop { position:absolute; z-index:9; left:50%; bottom:5%; transform:translateX(-50%) translateY(16px); width:90%;
+#reasonPop { position:absolute; z-index:9; left:50%; bottom:16%; transform:translateX(-50%) translateY(16px); width:94%;
   text-align:center; opacity:0; transition:all .25s steps(3); }
 #reasonPop.show { opacity:1; transform:translateX(-50%) translateY(0); }
-.verdict-chip { display:inline-block; font-size:14px; padding:7px 16px; border:3px solid #1a0833; margin-bottom:7px; box-shadow:3px 3px 0 rgba(0,0,0,.4); }
+.rpanel { display:inline-block; max-width:94%; padding:12px 16px; background:rgba(13,4,32,.88);
+  border:3px solid #1a0833; box-shadow:0 0 0 3px #ff8fdf, 5px 5px 0 rgba(0,0,0,.5); }
+.verdict-chip { display:inline-block; font-size:22px; padding:9px 20px; border:3px solid #1a0833; margin-bottom:10px; box-shadow:3px 3px 0 rgba(0,0,0,.4); }
 .v-women { background:#ffd0ef; color:#c1147f; } .v-notmen { background:#e3d2ff; color:#7b2ff7; }
 .v-men { background:#d6ecff; color:#1846a8; } .v-classified { background:#ffe14f; color:#8a2c00; }
-.reason-text { font-family:'Comic Neue', cursive; font-style:italic; font-weight:700; font-size:19px; color:#fff;
-  text-shadow:2px 2px 0 #1a0833; line-height:1.35; }
+.reason-text { font-family:'Comic Neue', cursive; font-style:italic; font-weight:700; font-size:32px; color:#fff;
+  text-shadow:3px 3px 0 #1a0833; line-height:1.3; }
+@media (max-width:560px){ .reason-text{ font-size:24px; } .verdict-chip{ font-size:18px; } .taunt{ font-size:15px; } }
+.taunt { font-family:'Comic Neue', cursive; font-weight:700; font-size:19px; color:#ff8fdf; margin-top:10px;
+  text-shadow:2px 2px 0 #1a0833; }
 
 #alert { position:absolute; inset:0; z-index:8; pointer-events:none; opacity:0; }
 #alert.on { animation:alertFlash .35s steps(2) 6; }
 @keyframes alertFlash { 0%{opacity:0; box-shadow:inset 0 0 0 0 #ff2d2d;} 50%{opacity:1; box-shadow:inset 0 0 90px 20px rgba(255,45,45,.75);} 100%{opacity:0;} }
 
 /* ===== APPEAL ===== */
-#btnAppeal { position:absolute; z-index:9; left:50%; bottom:100px; transform:translateX(-50%);
-  font-family:'Comic Neue', cursive; font-weight:700; font-size:13px; color:#ffd0ef; cursor:pointer;
-  background:rgba(13,4,32,.7); border:2px dashed #ff8fdf; padding:6px 14px; border-radius:4px; display:none; }
-#btnAppeal.show { display:block; }
-#btnAppeal:hover { color:#fff; }
+#btnAppeal { position:absolute; z-index:10; left:50%; bottom:120px; transform:translateX(-50%);
+  font-family:'Comic Neue', cursive; font-weight:700; font-size:16px; color:#1a0833; cursor:pointer;
+  background:linear-gradient(180deg,#fff,#ffd0ef 60%,#ffb3e6); border:3px solid #1a0833;
+  padding:9px 18px; box-shadow:0 0 0 2px #fff, 4px 4px 0 rgba(0,0,0,.4); display:none; }
+#btnAppeal.show { display:block; animation:appealBob .6s steps(2) infinite alternate; }
+#btnAppeal:active { transform:translateX(-50%) translateY(3px); }
+@keyframes appealBob { from{box-shadow:0 0 0 2px #fff,4px 4px 0 rgba(0,0,0,.4);} to{box-shadow:0 0 0 2px #ff2fa8,4px 4px 0 rgba(0,0,0,.4);} }
 #denied { position:absolute; z-index:13; left:50%; top:42%; transform:translate(-50%,-50%) rotate(-16deg) scale(0);
   font-family:'Press Start 2P', monospace; font-size:30px; color:#ff2d2d; border:5px solid #ff2d2d; padding:12px 18px;
   text-shadow:2px 2px 0 #1a0833; box-shadow:0 0 0 3px #1a0833; pointer-events:none; }
@@ -317,7 +330,7 @@ html, body { background: transparent; overflow: hidden; }
 @keyframes stamp { 0%{transform:translate(-50%,-50%) rotate(-16deg) scale(2.4); opacity:0;} 18%{transform:translate(-50%,-50%) rotate(-16deg) scale(1); opacity:1;} 78%{opacity:1;} 100%{opacity:0;} }
 
 /* ===== CONTROLS ===== */
-#controls { position:absolute; left:0; right:0; bottom:26px; z-index:7; display:flex; gap:10px; padding:0 12px; }
+#controls { position:absolute; left:0; right:0; bottom:36px; z-index:7; display:flex; gap:10px; padding:0 12px; }
 .choice { flex:1; font-family:'Press Start 2P', monospace; font-size:15px; color:#fff; padding:16px 8px;
   border:3px solid #1a0833; cursor:pointer; line-height:1.5; transition:transform .05s; box-shadow:0 0 0 2px #fff, 5px 5px 0 rgba(0,0,0,.45); }
 .choice:active { transform:translate(3px,3px); box-shadow:0 0 0 2px #fff, 2px 2px 0 rgba(0,0,0,.45); }
@@ -327,10 +340,10 @@ html, body { background: transparent; overflow: hidden; }
 #btnWomen:hover, #btnMen:hover { filter:brightness(1.08); }
 
 /* ===== REGGAETON TICKER ===== */
-#marquee { position:absolute; left:0; right:0; bottom:0; z-index:7; height:22px; overflow:hidden; white-space:nowrap;
-  background:#0d0420; border-top:2px solid #ff8fdf; }
-#marquee span { display:inline-block; padding-left:100%; animation:scroll 26s linear infinite;
-  font-family:'Comic Neue', cursive; font-weight:700; color:#ffd0ef; font-size:13px; line-height:22px; }
+#marquee { position:absolute; left:0; right:0; bottom:0; z-index:7; height:30px; overflow:hidden; white-space:nowrap;
+  background:#0d0420; border-top:3px solid #ff8fdf; }
+#marquee span { display:inline-block; padding-left:100%; animation:scroll 24s linear infinite;
+  font-family:'Comic Neue', cursive; font-weight:700; color:#ffd0ef; font-size:18px; line-height:30px; }
 @keyframes scroll { to { transform:translateX(-100%); } }
 
 /* ===== ANNOUNCER / VICTORY ===== */
@@ -406,8 +419,11 @@ html, body { background: transparent; overflow: hidden; }
 
 <script>
 const RULINGS = __RULINGS_JSON__;
+const CRIT_TAGS=['CRITICAL HIT','HE FELT THAT','DEVASTATING','TKO ENERGY'];
+const WRONG_TAGS=['WRONG, BABE','DID YOU LISTEN?','EMBARRASSING','THAT WAS A CHOICE'];
+const TRIATHLETE_ROASTS=["Shouldn't an NHS guy know this?","Wow, didn't know a triathlete would get this one wrong.","Mazel tov.","Drier than Bolivia.","All that cardio and still wrong.","A medal won't help you here, babe.","Hydrated, employed, still wrong.","Reads a watch all day, can't read a room.","Swims, bikes, runs, loses.","He'll feel this one on his Strava.","Carb-loaded for absolutely nothing.","Bless him. He tried."];
 const BOOKS = ["Invisible Women", "The Second Sex", "Men Explain Things To Me"];
-const MARQUEE = "\u2665 welcome 2 the institute \u2665 best viewed in 800\u00d7600 \u2665 sign my guestbook \u2665 yo perreo sola \u2665 un verano sin informaci\u00f3n \u2665 \uD83D\uDC30 conejo approved \uD83D\uDC30 \u2665 no boys allowed (jk\u2026 unless?) \u2665 ur visitor #000127 \u2665 dale \u2665 made with luv + glitter \u2665 ";
+const MARQUEE = "\u2665 welcome 2 the institute \u2665 no boys allowed (we said what we said) \u2665 yo perreo sola \u2665 tit\u00ed me pregunt\u00f3 \u2665 un verano sin informaci\u00f3n \u2665 \uD83D\uDC30 el conejo is ours \uD83D\uDC30 \u2665 deb\u00ed tirar m\u00e1s rulings \u2665 best viewed in 800\u00d7600 \u2665 ur visitor #000127 \u2665 cry about it \u2665 dale \u2665 made with luv + spite \u2665 ";
 
 /* ===== PIXEL-ART CHARACTERS (bold blocks + hard outlines so they survive downscaling) ===== */
 const OUT = '#1a0833';
@@ -615,7 +631,7 @@ function damageBar(side, amt){ if(side==='men'){ st.menHP=Math.max(0,st.menHP-am
 function floatText(big, dmg, cls){ const f=document.createElement('div'); f.className='floater '+(cls||'');
   f.innerHTML=`<span class="big">${big}</span>`+(dmg!=null?`<span class="dmg">-${dmg}</span>`:''); f.style.left=(cls==='miss'?'18%':'66%');
   elStage.appendChild(f); setTimeout(()=>f.remove(),2000); }
-function showReason(v, reason){ elReason.innerHTML=`<span class="verdict-chip ${vclass(v)}">${v}</span><div class="reason-text">&ldquo;${reason}&rdquo;</div>`; elReason.classList.add('show'); }
+function showReason(v, reason, taunt){ const t = taunt ? `<div class="taunt">${taunt}</div>` : ''; elReason.innerHTML=`<div class="rpanel"><span class="verdict-chip ${vclass(v)}">${v}</span><div class="reason-text">&ldquo;${reason}&rdquo;</div>${t}</div>`; elReason.classList.add('show'); }
 function hideReason(){ elReason.classList.remove('show'); }
 function announce(text, cb){ elAnnTxt.textContent=text; elAnn.classList.remove('show'); void elAnn.offsetWidth; elAnn.classList.add('show'); setTimeout(()=>{ elAnn.classList.remove('show'); if(cb)cb(); },1000); }
 
@@ -645,15 +661,15 @@ function doCorrect(){ st.combo+=1; st.best=Math.max(st.best,st.combo); const cri
   const v=st.current.verdict, reason=st.current.reason, label=st.current.thing.toUpperCase();
   elHeroine.classList.add('lungeL'); setTimeout(()=>elHeroine.classList.remove('lungeL'),500);
   launchProjectile('toMen', label, ()=>{ impactAt('men'); elTri.classList.add('hitR','flash'); setTimeout(()=>elTri.classList.remove('hitR','flash'),520);
-    damageBar('men',dmg); const tag=crit?'CRITICAL HIT':(v==='FOR WOMEN'?'SPIRIT DAMAGE':'RULING LANDS'); floatText(tag,dmg,crit?'crit':'');
+    damageBar('men',dmg); const tag=crit?rand(CRIT_TAGS):(v==='FOR WOMEN'?'SPIRIT DAMAGE':'RULING LANDS'); floatText(tag,dmg,crit?'crit':'');
     if(st.combo>1){ elCombo.textContent='\u2605 COMBO x'+st.combo+' \u2605'; elCombo.classList.remove('show'); void elCombo.offsetWidth; elCombo.classList.add('show'); }
-    showReason(v,reason); showAppeal(); setBars();
+    showReason(v,reason,rand(TRIATHLETE_ROASTS)); showAppeal(); setBars();
     if(st.menHP<=0){ koSequence('WOMEN'); } else { st.round+=1; setTimeout(nextRound,REVEAL_MS); } }); }
 
 function doWrong(){ st.combo=0; const dmg=20; const v=st.current.verdict, reason=st.current.reason;
   elTri.classList.add('lungeR'); setTimeout(()=>elTri.classList.remove('lungeR'),500);
   launchProjectile('toWomen','WRONG',()=>{ impactAt('women'); elHeroine.classList.add('hitL','flash'); setTimeout(()=>elHeroine.classList.remove('hitL','flash'),520);
-    damageBar('women',dmg); floatText('NOT QUITE',dmg,'miss'); showReason(v,reason); showAppeal(); setBars();
+    damageBar('women',dmg); floatText(rand(WRONG_TAGS),dmg,'miss'); showReason(v,reason); showAppeal(); setBars();
     if(st.womenHP<=0){ koSequence('MEN'); } else { st.round+=1; setTimeout(nextRound,REVEAL_MS); } }); }
 
 function doClassified(){ const v=st.current.verdict, reason=st.current.reason;
@@ -667,13 +683,13 @@ function onGuess(side){ if(st.busy||st.over||!st.current)return; st.busy=true; e
 
 function koSequence(winner){ st.over=true; st.busy=true; elBtnW.disabled=true; elBtnM.disabled=true; hideAppeal(); setBars(); announce('K.O.!', ()=>showVictory(winner)); }
 function showVictory(winner){ if(winner==='WOMEN'){ setSprite($('victorySvg'), heroineVictory(), 96, 154);
-    $('victoryTitle').innerHTML='FLAWLESS,<br>OBVIOUSLY'; $('victorySub').textContent='Team Women takes the ruling. It was always going to be for women.'; }
+    $('victoryTitle').innerHTML='FLAWLESS,<br>OBVIOUSLY'; $('victorySub').textContent='It was never close. It was never going to be for men. Better luck never, babe.'; }
   else { const book=rand(BOOKS); setSprite($('victorySvg'), triathleteVictory(book), 96, 154);
-    $('victoryTitle').innerHTML='TEAM MEN WINS'; $('victorySub').innerHTML='He sits down, opens &ldquo;'+book+',&rdquo; and begins, quietly, to grow. We are proud of him.'; }
+    $('victoryTitle').innerHTML='TEAM MEN WINS'; $('victorySub').innerHTML='He sits down, opens &ldquo;'+book+',&rdquo; and finally, finally starts listening. We are cautiously proud of him.'; }
   elVic.classList.add('show'); }
 
 function start(){ setSprite($('portraitW'), miniHeroine(), 20, 20); setSprite($('portraitM'), miniTri(), 20, 20);
-  freshState(); setSprite(elHeroine, heroineStance(), 60, 96); setSprite(elTri, triathleteStance(), 60, 96);
+  freshState(); elBtnW.disabled=false; elBtnM.disabled=false; setSprite(elHeroine, heroineStance(), 60, 96); setSprite(elTri, triathleteStance(), 60, 96);
   elVic.classList.remove('show'); hideReason(); hideAppeal(); $('marqueeText').textContent=MARQUEE+MARQUEE; setBars(); pickWord(); announce('ROUND 1  FIGHT!'); }
 
 elBtnW.addEventListener('click', ()=>onGuess('WOMEN'));
@@ -708,9 +724,9 @@ except Exception:
 # HOW TO PLAY
 #   - A WORD appears above the arena. Hit FOR WOMEN or FOR MEN.
 #   - "NOT FOR MEN" verdicts count as the WOMEN side.
-#   - Correct guesses make the heroine attack; the ruling flies across the
-#     screen, the triathlete is hit, Team Men's health drops, combos build.
+#   - Correct guesses make the heroine attack; the ruling flies across, the
+#     triathlete eats it (and a roast), Team Men's health drops, combos build.
 #   - Wrong guesses cost Team Women health. Rare CLASSIFIED = red alert.
-#   - Tap "appeal this ruling" during a reveal for the verdict.
-#   - Knock a team to zero HP for the victory screen.
+#   - Tap the appeal button during a reveal -> APPEAL DENIED.
+#   - KO a team for the victory screen, then PLAY AGAIN restarts cleanly.
 # ---------------------------------------------------------------------------
