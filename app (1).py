@@ -22,7 +22,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-RULINGS = [{'k': 'NM', 'en': ['Seatbelts', 'Thought you were a good driver?'], 'es': ['Cinturones de seguridad', '¿Te creías buen conductor?']}, {'k': 'NM', 'en': ['Glasses', 'What do men need to see so badly?'], 'es': ['Anteojos', '¿Qué necesitan ver los hombres con tanta urgencia?']}, {'k': 'W', 'en': ['Coconut water', "It's spiritual."], 'es': ['Agua de coco', 'Es espiritual.']}, {'k': 'M', 'en': ['Cockroaches', 'Self-explanatory.'], 'es': ['Cucarachas', 'Se explica solo.']}, {'k': 'W', 'en': ['Leisure time', 'Why would men rest? tired from lying??'], 'es': ['Tiempo libre', '¿Por qué descansarían los hombres? ¿cansados de mentir??']}, {'k': 'M', 'en': ['Dried grass', 'You can have this'], 'es': ['Pasto seco', 'Te lo podés quedar']}, {'k': 'NM', 'en': ['Hydration', 'What exactly were you planning to do today?'], 'es': ['Hidratación', '¿Qué tenías pensado hacer hoy, exactamente?']}, {'k': 'M', 'en': ['Cargo shorts', 'Yes please hide.'], 'es': ['Bermudas cargo', 'Sí, por favor, escondete.']}, {'k': 'W', 'en': ['Astrology', 'We invented the stars.'], 'es': ['Astrología', 'Nosotras inventamos las estrellas.']}, {'k': 'NM', 'en': ['Ladders', 'Who said you could go up?'], 'es': ['Escaleras', '¿Quién dijo que podías subir?']}, {'k': 'M', 'en': ['Grilling', 'A controlled little fire to feel in charge of.'], 'es': ['El asado', 'Un fueguito controlado para sentirse al mando.']}, {'k': 'W', 'en': ['Crying', 'An advanced emotional technology.'], 'es': ['Llorar', 'Una tecnología emocional avanzada.']}, {'k': 'NM', 'en': ['Opinions', 'Did anyone ask?'], 'es': ['Las opiniones', '¿Alguien preguntó?']}, {'k': 'M', 'en': ['Fantasy football', 'A spreadsheet that loves them back.'], 'es': ['El fantasy football', 'Una planilla que sí los quiere.']}, {'k': 'W', 'en': ['Naps', 'We earned them.'], 'es': ['Las siestas', 'Nos las ganamos.']}, {'k': 'NM', 'en': ['Maps', 'Thought you knew the way?'], 'es': ['Los mapas', '¿Creías que sabías el camino?']}, {'k': 'W', 'en': ['Sourdough starters', 'A pet you can eat.'], 'es': ['La masa madre', 'Una mascota que te podés comer.']}, {'k': 'M', 'en': ['Lawnmowers', 'A loud Saturday companion.'], 'es': ['Las cortadoras de pasto', 'Una ruidosa compañía de sábado.']}, {'k': 'NM', 'en': ['The aux cord', 'Are you sure you should be in charge of the vibe?'], 'es': ['El cable auxiliar', '¿Seguro que vos tenés que manejar la música?']}, {'k': 'W', 'en': ['Moonlight', "She's one of us."], 'es': ['La luz de la luna', 'Es una de las nuestras.']}, {'k': 'M', 'en': ['Protein powder', 'Sand for the soul.'], 'es': ['La proteína en polvo', 'Arena para el alma.']}, {'k': 'NM', 'en': ['Thermostats', 'Who told you you were cold?'], 'es': ['Los termostatos', '¿Quién te dijo que tenías frío?']}, {'k': 'NM', 'en': ['Reverse parking', 'Confident, are we?'], 'es': ['Estacionar marcha atrás', 'Confiados, ¿no?']}, {'k': 'M', 'en': ['Power tools', "Personally that's ok with me."], 'es': ['Las herramientas eléctricas', 'Personalmente, eso lo banco.']}, {'k': 'NM', 'en': ['The remote control', 'And who appointed you?'], 'es': ['El control remoto', '¿Y quién te nombró a vos?']}, {'k': 'NM', 'en': ['Directions', 'Lost again?'], 'es': ['Las direcciones', '¿Perdido de nuevo?']}, {'k': 'W', 'en': ['Journaling', "But I'll let you have this one alex."], 'es': ['Escribir un diario', 'Pero esta te la dejo, alex.']}, {'k': 'W', 'en': ['Group chats', 'The real government.'], 'es': ['Los grupos de chat', 'El verdadero gobierno.']}, {'k': 'NM', 'en': ['Loud sneezing', 'Was that necessary?'], 'es': ['Estornudar fuerte', '¿Hacía falta?']}, {'k': 'W', 'en': ['Brunch', 'A holy meal.'], 'es': ['El brunch', 'Una comida sagrada.']}, {'k': 'M', 'en': ['Riding lawnmowers', "I guess it's ok if you drive that."], 'es': ['Las cortadoras con asiento', 'Bueno, si manejás eso, pase.']}, {'k': 'NM', 'en': ['Calendars', "You forgot, didn't you?"], 'es': ['Los calendarios', 'Te olvidaste, ¿no?']}, {'k': 'M', 'en': ['Lint', 'Pocket confetti.'], 'es': ['La pelusa', 'Confeti de bolsillo.']}, {'k': 'NM', 'en': ['Standing too close', 'Why so near?'], 'es': ['Pararse muy cerca', '¿Por qué tan cerca?']}, {'k': 'M', 'en': ['Energy drinks', 'Caffeinated optimism.'], 'es': ['Las bebidas energéticas', 'Optimismo con cafeína.']}, {'k': 'NM', 'en': ['Whistling', 'Who taught you that?'], 'es': ['Silbar', '¿Quién te enseñó eso?']}, {'k': 'W', 'en': ['Flowers', "Nature's compliments."], 'es': ['Las flores', 'Los cumplidos de la naturaleza.']}, {'k': 'M', 'en': ['Folding chairs', 'You can sit I guess.'], 'es': ['Las sillas plegables', 'Te podés sentar, supongo.']}, {'k': 'NM', 'en': ['The last word', 'Are you finished?'], 'es': ['La última palabra', '¿Terminaste?']}, {'k': 'NM', 'en': ['Mansplaining', 'Did we ask you to elaborate?'], 'es': ['El mansplaining', '¿Te pedimos que explicaras?']}, {'k': 'NM', 'en': ['The thermostat (again)', 'Cold? Already?'], 'es': ['El termostato (otra vez)', '¿Frío? ¿Ya?']}, {'k': 'W', 'en': ['Lavender', 'She calms only us.'], 'es': ['La lavanda', 'Solo a nosotras nos calma.']}, {'k': 'M', 'en': ['Toolboxes', 'Like a jewelry box but you buy it for yourself.'], 'es': ['Las cajas de herramientas', 'Como un joyero, pero te lo comprás vos.']}, {'k': 'W', 'en': ['Stargazing', 'Returning home, basically.'], 'es': ['Mirar las estrellas', 'Básicamente, volver a casa.']}, {'k': 'NM', 'en': ['Loud opinions on coffee', 'Is this a TED talk?'], 'es': ['Opinar fuerte sobre el café', '¿Esto es una charla TED?']}, {'k': 'W', 'en': ['Bubble baths', 'Ritual cleansing.'], 'es': ['Los baños de espuma', 'Limpieza ritual.']}, {'k': 'M', 'en': ['Gravel', 'Decorative crunch.'], 'es': ['La grava', 'Crujido decorativo.']}, {'k': 'NM', 'en': ['Eye contact while parking', 'Nervous?'], 'es': ['Mirar a los ojos al estacionar', '¿Nervioso?']}, {'k': 'M', 'en': ['Antlers on the wall', 'Like hanging a diploma for less smart creatures.'], 'es': ['Astas en la pared', 'Como colgar un diploma para criaturas menos inteligentes.']}, {'k': 'NM', 'en': ["The phrase 'well actually'", 'Actually what?'], 'es': ['La frase «en realidad»', '¿En realidad qué?']}, {'k': 'W', 'en': ['Peonies', 'They bloom on command for us.'], 'es': ['Las peonías', 'Florecen cuando se lo pedimos.']}, {'k': 'NM', 'en': ['The fast lane', 'Somewhere to be?'], 'es': ['El carril rápido', '¿Tenés algún lado adonde ir?']}, {'k': 'W', 'en': ['Matcha', 'Green meditation.'], 'es': ['El matcha', 'Meditación verde.']}, {'k': 'W', 'en': ['Wide-leg trousers', 'Architecture.'], 'es': ['Los pantalones anchos', 'Arquitectura.']}, {'k': 'M', 'en': ['Bottle openers shaped like fish', 'A personality, allegedly.'], 'es': ['Los destapadores con forma de pez', 'Una personalidad, supuestamente.']}, {'k': 'NM', 'en': ["The phrase 'trust me'", 'Why would we?'], 'es': ['La frase «confiá en mí»', '¿Por qué lo haríamos?']}, {'k': 'W', 'en': ['Fairy lights', 'Captured stars.'], 'es': ['Las lucecitas', 'Estrellas capturadas.']}, {'k': 'NM', 'en': ['Heated debates at parties', 'Is this fun for you?'], 'es': ['Los debates acalorados en fiestas', '¿Esto te divierte?']}, {'k': 'W', 'en': ['Champagne', 'Bubbles of victory.'], 'es': ['El champán', 'Burbujas de victoria.']}, {'k': 'NM', 'en': ['The phone at dinner', 'Something more important than our date, Alex?'], 'es': ['El celular en la cena', '¿Algo más importante que nuestra cita, Alex?']}, {'k': 'W', 'en': ['Pearls', "The ocean's apology."], 'es': ['Las perlas', 'La disculpa del océano.']}, {'k': 'M', 'en': ['Camo print', 'HIDE PLEASE HIDE.'], 'es': ['El estampado militar', 'ESCONDETE POR FAVOR ESCONDETE.']}, {'k': 'NM', 'en': ['Unsolicited feedback', 'Did a request go out?'], 'es': ['Las críticas no pedidas', '¿Salió algún pedido?']}, {'k': 'W', 'en': ['Croissants', "I don't need to explain this."], 'es': ['Las medialunas', 'No necesito explicar esto.']}, {'k': 'M', 'en': ['Screws and stuff', 'No notes. None.'], 'es': ['Tornillos y esas cosas', 'Sin comentarios. Ninguno.']}, {'k': 'NM', 'en': ['The thermostat (one more time)', 'Still cold?'], 'es': ['El termostato (una vez más)', '¿Seguís con frío?']}, {'k': 'NM', 'en': ['The middle armrest', 'Both of them?'], 'es': ['El apoyabrazos del medio', '¿Los dos?']}, {'k': 'NM', 'en': ["The phrase 'calm down'", 'Excuse me?'], 'es': ['La frase «calmate»', '¿Perdón?']}, {'k': 'W', 'en': ['Linen', 'Effortless on purpose.'], 'es': ['El lino', 'Descuidado a propósito.']}, {'k': 'M', 'en': ['Fishing hats', 'A hobby worn proudly.'], 'es': ['Los sombreros de pesca', 'Un hobby usado con orgullo.']}, {'k': 'NM', 'en': ['Cutting in line', 'Were you raised in a barn?'], 'es': ['Colarse en la fila', '¿Te criaron en un establo?']}, {'k': 'W', 'en': ['Cherry blossoms', 'They time their bloom for us.'], 'es': ['Los cerezos en flor', 'Florecen en su momento para nosotras.']}, {'k': 'NM', 'en': ['Explaining the movie', 'We watched it too?'], 'es': ['Explicar la película', '¿La vimos las dos también?']}, {'k': 'NM', 'en': ['Reclining the seat fully', 'Comfortable back there?'], 'es': ['Reclinar todo el asiento', '¿Cómodo ahí atrás?']}, {'k': 'W', 'en': ['Moon phases', 'We keep the schedule.'], 'es': ['Las fases de la luna', 'Nosotras llevamos la agenda.']}, {'k': 'M', 'en': ['Toothpick chewing', 'I hope you poke the roof of your mouth.'], 'es': ['Masticar escarbadientes', 'Ojalá te pinches el paladar.']}, {'k': 'NM', 'en': ['The last slice', 'Were you going to ask?'], 'es': ['La última porción', '¿Ibas a preguntar?']}, {'k': 'W', 'en': ['Silk pillowcases', 'We deserve a soft landing.'], 'es': ['Las fundas de seda', 'Merecemos un aterrizaje suave.']}, {'k': 'W', 'en': ['Benito', 'or.. womann?? this woman.'], 'es': ['Benito', '¿o... mujerr?? esta mujer.']}, {'k': 'W', 'en': ['Bad Bunny', 'Ours. You may listen quietly.'], 'es': ['Bad Bunny', 'Nuestro. Podés escuchar calladito.']}, {'k': 'W', 'en': ['Un Verano Sin Ti', 'Required reading.'], 'es': ['Un Verano Sin Ti', 'Lectura obligatoria.']}, {'k': 'NM', 'en': ['Conejo Malo', 'Did he ever once mention you?'], 'es': ['Conejo Malo', '¿Alguna vez te nombró?']}, {'k': 'W', 'en': ['Perreo', 'A feminine science.'], 'es': ['Perreo', 'Una ciencia femenina.']}]
+RULINGS = [{'k': 'NM', 'en': ['Seatbelts', 'Thought you were a good driver?'], 'es': ['Cinturones de seguridad', '¿Te creías buen conductor?']}, {'k': 'NM', 'en': ['Glasses', 'What do men need to see so badly?'], 'es': ['Anteojos', '¿Qué necesitan ver los hombres con tanta urgencia?']}, {'k': 'W', 'en': ['Coconut water', "It's spiritual."], 'es': ['Agua de coco', 'Es espiritual.']}, {'k': 'M', 'en': ['Cockroaches', 'Self-explanatory.'], 'es': ['Cucarachas', 'Se explica solo.']}, {'k': 'W', 'en': ['Leisure time', 'Why would men rest? tired from lying??'], 'es': ['Tiempo libre', '¿Por qué descansarían los hombres? ¿cansados de mentir??']}, {'k': 'M', 'en': ['Dried grass', 'You can have this'], 'es': ['Pasto seco', 'Te lo podés quedar']}, {'k': 'NM', 'en': ['Hydration', 'What exactly were you planning to do today?'], 'es': ['Hidratación', '¿Qué tenías pensado hacer hoy, exactamente?']}, {'k': 'M', 'en': ['Camo shorts', 'Yes please hide.'], 'es': ['Bermudas cargo', 'Sí, por favor, escondete.']}, {'k': 'W', 'en': ['Astrology', 'We invented the stars.'], 'es': ['Astrología', 'Nosotras inventamos las estrellas.']}, {'k': 'NM', 'en': ['Ladders', 'Who said you could go up?'], 'es': ['Escaleras', '¿Quién dijo que podías subir?']}, {'k': 'M', 'en': ['Grilling', 'A controlled little fire to feel in charge of.'], 'es': ['El asado', 'Un fueguito controlado para sentirse al mando.']}, {'k': 'W', 'en': ['Crying', 'An advanced emotional technology.'], 'es': ['Llorar', 'Una tecnología emocional avanzada.']}, {'k': 'NM', 'en': ['Opinions', 'Did anyone ask?'], 'es': ['Las opiniones', '¿Alguien preguntó?']}, {'k': 'M', 'en': ['Fantasy football', 'A spreadsheet that loves them back.'], 'es': ['El fantasy football', 'Una planilla que sí los quiere.']}, {'k': 'W', 'en': ['Naps', 'We earned them.'], 'es': ['Las siestas', 'Nos las ganamos.']}, {'k': 'NM', 'en': ['Maps', 'Thought you knew the way?'], 'es': ['Los mapas', '¿Creías que sabías el camino?']}, {'k': 'W', 'en': ['Sourdough starters', 'A pet you can eat.'], 'es': ['La masa madre', 'Una mascota que te podés comer.']}, {'k': 'M', 'en': ['Lawnmowers', 'A loud Saturday companion.'], 'es': ['Las cortadoras de pasto', 'Una ruidosa compañía de sábado.']}, {'k': 'NM', 'en': ['The aux cord', 'Are you sure you should be in charge of the vibe?'], 'es': ['El cable auxiliar', '¿Seguro que vos tenés que manejar la música?']}, {'k': 'W', 'en': ['Moonlight', "She's one of us."], 'es': ['La luz de la luna', 'Es una de las nuestras.']}, {'k': 'M', 'en': ['Protein powder', 'Sand for the soul.'], 'es': ['La proteína en polvo', 'Arena para el alma.']}, {'k': 'NM', 'en': ['Thermostats', 'Who told you you were cold?'], 'es': ['Los termostatos', '¿Quién te dijo que tenías frío?']}, {'k': 'NM', 'en': ['Reverse parking', 'Confident, are we?'], 'es': ['Estacionar marcha atrás', 'Confiados, ¿no?']}, {'k': 'M', 'en': ['Power tools', "Personally that's ok with me."], 'es': ['Las herramientas eléctricas', 'Personalmente, eso lo banco.']}, {'k': 'NM', 'en': ['The remote control', 'And who appointed you?'], 'es': ['El control remoto', '¿Y quién te nombró a vos?']}, {'k': 'NM', 'en': ['Directions', 'Lost again?'], 'es': ['Las direcciones', '¿Perdido de nuevo?']}, {'k': 'W', 'en': ['Journaling', "But I'll let you have this one alex."], 'es': ['Escribir un diario', 'Pero esta te la dejo, alex.']}, {'k': 'W', 'en': ['Group chats', 'The real government.'], 'es': ['Los grupos de chat', 'El verdadero gobierno.']}, {'k': 'NM', 'en': ['Loud sneezing', 'Was that necessary?'], 'es': ['Estornudar fuerte', '¿Hacía falta?']}, {'k': 'W', 'en': ['Brunch', 'A holy meal.'], 'es': ['El brunch', 'Una comida sagrada.']}, {'k': 'M', 'en': ['Riding lawnmowers', "I guess it's ok if you drive that."], 'es': ['Las cortadoras con asiento', 'Bueno, si manejás eso, pase.']}, {'k': 'NM', 'en': ['Calendars', "You forgot, didn't you?"], 'es': ['Los calendarios', 'Te olvidaste, ¿no?']}, {'k': 'M', 'en': ['Lint', 'Pocket confetti.'], 'es': ['La pelusa', 'Confeti de bolsillo.']}, {'k': 'NM', 'en': ['Standing too close', 'Why so near?'], 'es': ['Pararse muy cerca', '¿Por qué tan cerca?']}, {'k': 'M', 'en': ['Energy drinks', 'Caffeinated optimism.'], 'es': ['Las bebidas energéticas', 'Optimismo con cafeína.']}, {'k': 'NM', 'en': ['Whistling', 'Who taught you that?'], 'es': ['Silbar', '¿Quién te enseñó eso?']}, {'k': 'W', 'en': ['Flowers', "Nature's compliments."], 'es': ['Las flores', 'Los cumplidos de la naturaleza.']}, {'k': 'M', 'en': ['Folding chairs', 'You can sit I guess.'], 'es': ['Las sillas plegables', 'Te podés sentar, supongo.']}, {'k': 'NM', 'en': ['The last word', 'Are you finished?'], 'es': ['La última palabra', '¿Terminaste?']}, {'k': 'NM', 'en': ['Mansplaining', 'Did we ask you to elaborate?'], 'es': ['El mansplaining', '¿Te pedimos que explicaras?']}, {'k': 'NM', 'en': ['The thermostat (again)', 'Cold? Already?'], 'es': ['El termostato (otra vez)', '¿Frío? ¿Ya?']}, {'k': 'W', 'en': ['Lavender', 'She calms only us.'], 'es': ['La lavanda', 'Solo a nosotras nos calma.']}, {'k': 'M', 'en': ['Toolboxes', 'Like a jewelry box but you buy it for yourself.'], 'es': ['Las cajas de herramientas', 'Como un joyero, pero te lo comprás vos.']}, {'k': 'W', 'en': ['Stargazing', 'Returning home, basically.'], 'es': ['Mirar las estrellas', 'Básicamente, volver a casa.']}, {'k': 'NM', 'en': ['Loud opinions on coffee', 'Is this a TED talk?'], 'es': ['Opinar fuerte sobre el café', '¿Esto es una charla TED?']}, {'k': 'W', 'en': ['Bubble baths', 'Ritual cleansing.'], 'es': ['Los baños de espuma', 'Limpieza ritual.']}, {'k': 'M', 'en': ['Gravel', 'Decorative crunch.'], 'es': ['La grava', 'Crujido decorativo.']}, {'k': 'NM', 'en': ['Eye contact while parking', 'Nervous?'], 'es': ['Mirar a los ojos al estacionar', '¿Nervioso?']}, {'k': 'M', 'en': ['Antlers on the wall', 'Like hanging a diploma for less smart creatures.'], 'es': ['Astas en la pared', 'Como colgar un diploma para criaturas menos inteligentes.']}, {'k': 'NM', 'en': ["The phrase 'well actually'", 'Actually what?'], 'es': ['La frase «en realidad»', '¿En realidad qué?']}, {'k': 'W', 'en': ['Peonies', 'They bloom on command for us.'], 'es': ['Las peonías', 'Florecen cuando se lo pedimos.']}, {'k': 'NM', 'en': ['The fast lane', 'Somewhere to be?'], 'es': ['El carril rápido', '¿Tenés algún lado adonde ir?']}, {'k': 'W', 'en': ['Matcha', 'Green meditation.'], 'es': ['El matcha', 'Meditación verde.']}, {'k': 'W', 'en': ['Wide-leg trousers', 'Architecture.'], 'es': ['Los pantalones anchos', 'Arquitectura.']}, {'k': 'M', 'en': ['Bottle openers shaped like fish', 'A personality, allegedly.'], 'es': ['Los destapadores con forma de pez', 'Una personalidad, supuestamente.']}, {'k': 'NM', 'en': ["The phrase 'trust me'", 'Why would we?'], 'es': ['La frase «confiá en mí»', '¿Por qué lo haríamos?']}, {'k': 'W', 'en': ['Fairy lights', 'Captured stars.'], 'es': ['Las lucecitas', 'Estrellas capturadas.']}, {'k': 'NM', 'en': ['Heated debates at parties', 'Is this fun for you?'], 'es': ['Los debates acalorados en fiestas', '¿Esto te divierte?']}, {'k': 'W', 'en': ['Champagne', 'Bubbles of victory.'], 'es': ['El champán', 'Burbujas de victoria.']}, {'k': 'NM', 'en': ['The phone at dinner', 'Something more important than our date, Alex?'], 'es': ['El celular en la cena', '¿Algo más importante que nuestra cita, Alex?']}, {'k': 'W', 'en': ['Pearls', "The ocean's apology."], 'es': ['Las perlas', 'La disculpa del océano.']}, {'k': 'M', 'en': ['Camo print', 'HIDE PLEASE HIDE.'], 'es': ['El estampado militar', 'ESCONDETE POR FAVOR ESCONDETE.']}, {'k': 'NM', 'en': ['Unsolicited feedback', 'Did a request go out?'], 'es': ['Las críticas no pedidas', '¿Salió algún pedido?']}, {'k': 'W', 'en': ['Croissants', "I don't need to explain this."], 'es': ['Las medialunas', 'No necesito explicar esto.']}, {'k': 'M', 'en': ['Screws and stuff', 'No notes. None.'], 'es': ['Tornillos y esas cosas', 'Sin comentarios. Ninguno.']}, {'k': 'NM', 'en': ['The thermostat (one more time)', 'Still cold?'], 'es': ['El termostato (una vez más)', '¿Seguís con frío?']}, {'k': 'NM', 'en': ['The middle armrest', 'Both of them?'], 'es': ['El apoyabrazos del medio', '¿Los dos?']}, {'k': 'NM', 'en': ["The phrase 'calm down'", 'Excuse me?'], 'es': ['La frase «calmate»', '¿Perdón?']}, {'k': 'W', 'en': ['Linen', 'Effortless on purpose.'], 'es': ['El lino', 'Descuidado a propósito.']}, {'k': 'M', 'en': ['Fishing hats', 'A hobby worn proudly.'], 'es': ['Los sombreros de pesca', 'Un hobby usado con orgullo.']}, {'k': 'NM', 'en': ['Cutting in line', 'Were you raised in a barn?'], 'es': ['Colarse en la fila', '¿Te criaron en un establo?']}, {'k': 'W', 'en': ['Cherry blossoms', 'They time their bloom for us.'], 'es': ['Los cerezos en flor', 'Florecen en su momento para nosotras.']}, {'k': 'NM', 'en': ['Explaining the movie', 'We watched it too?'], 'es': ['Explicar la película', '¿La vimos las dos también?']}, {'k': 'NM', 'en': ['Reclining the seat fully', 'Comfortable back there?'], 'es': ['Reclinar todo el asiento', '¿Cómodo ahí atrás?']}, {'k': 'W', 'en': ['Moon phases', 'We keep the schedule.'], 'es': ['Las fases de la luna', 'Nosotras llevamos la agenda.']}, {'k': 'M', 'en': ['Toothpick chewing', 'I hope you poke the roof of your mouth.'], 'es': ['Masticar escarbadientes', 'Ojalá te pinches el paladar.']}, {'k': 'NM', 'en': ['The last slice', 'Were you going to ask?'], 'es': ['La última porción', '¿Ibas a preguntar?']}, {'k': 'W', 'en': ['Silk pillowcases', 'We deserve a soft landing.'], 'es': ['Las fundas de seda', 'Merecemos un aterrizaje suave.']}, {'k': 'W', 'en': ['Benito', 'or.. womann?? this woman.'], 'es': ['Benito', '¿o... mujerr?? esta mujer.']}, {'k': 'W', 'en': ['Bad Bunny', 'Ours. You may listen quietly.'], 'es': ['Bad Bunny', 'Nuestro. Podés escuchar calladito.']}, {'k': 'W', 'en': ['Un Verano Sin Ti', 'Required reading.'], 'es': ['Un Verano Sin Ti', 'Lectura obligatoria.']}, {'k': 'NM', 'en': ['Conejo Malo', 'Did he ever once mention you?'], 'es': ['Conejo Malo', '¿Alguna vez te nombró?']}, {'k': 'W', 'en': ['Perreo', 'A feminine science.'], 'es': ['Perreo', 'Una ciencia femenina.']}]
 
 ROASTS = {
     # Alex gets these ONLY when he guesses correctly: positive reinforcement, but still insulting.
@@ -31,7 +31,6 @@ ROASTS = {
         "Good go! Your prize is a beach trip to Bolivia.",
         "Even a broken clock is right twice a day, I guess.",
         "Good job! I'll pay for half of your croissant.",
-        "Fine, I'll marry into a fart family, I guess.",
         "I'll give it to you because you're cute.",
         "Nice! I'll pay for half of your croissant.",
         "Mazel tov. Bare minimum achieved.",
@@ -43,50 +42,49 @@ ROASTS = {
         "Carb-loaded for one correct answer. Inspiring.",
         "North London's finest privately educated gentleman has located one fact.",
         "Fine. That was correct. Don't make it your whole personality.",
-        "He painted his nails and got an answer right. Feminism advances.",
-        "Look at him learning. Slowly. But learning.",
         "Correct. I am being very generous about this.",
         "You may sit at the women's table for three minutes.",
-        "One point for Alex, several concerns remain.",
-        "Correct, unfortunately for my argument."
+        "Correct, unfortunately for my argument.",
+        "Okay, that was almost competent.",
+        "A little win for North London.",
+        "Fine, handsome and occasionally correct.",
+        "The Institute acknowledges this tiny achievement.",
+        "A correct answer? In this economy?",
+        "You have earned one polite nod.",
+        "Correct. Do not let this inflate your confidence.",
+        "He got one right. The crowd is confused but supportive.",
+        "Fine, I’ll allow it because you’re cute.",
+        "This is the kind of progress people write pamphlets about.",
     ],
     # Alex gets these ONLY when he guesses incorrectly: discouraging / insulting messages.
     'wrong': [
         "Better luck next time, Harley.",
         "North London's finest schools and still gets it wrong.",
-        "North London's finest privately educated gentleman... and still wrong.",
-        "A child psychologist who can't read the room.",
         "A child psychologist who can't read a room.",
         "Shouldn't an NHS guy know this?",
         "Wow, didn't know a triathlete would get this one wrong.",
-        "Flat feet, smooth brain!",
         "Worse than getting hit by a bus.",
         "All that cardio and still wrong.",
         "A triathlon first-place trophy won't help you here, babe.",
         "Reads a watch all day, can't read a room.",
-        "Swims, bikes, runs, loses.",
         "Carb-loaded for absolutely nothing.",
         "Bless him. He tried.",
-        "The performative era is over, sweetie.",
-        "Bolivia would have guessed better.",
         "He painted his nails for moments like this.",
-        "Not the privately educated frontal lobe failing us.",
-        "Incorrect. Battersea is reviewing your visa.",
-        "This is why the Institute was founded.",
-        "A strong body and yet the answer escaped.",
-        "The room was available to be read. You declined.",
-        "Emotionally available, categorically unavailable.",
         "He trained for three sports and none of them was thinking.",
-        "That answer was hit by a bus.",
-        "Wrong, but with confidence. Dangerous combination.",
-        "A historic defeat for men with Garmin watches."
+        "A historic defeat for men with Garmin watches.",
+        "Harley Quinn hair would have known better.",
+        "A devastating blow to the private school system.",
+        "This is exactly why men lost custody of the aux cord.",
+        "Men will literally train for an Ironman instead of knowing the answer.",
+        "No beach trip to Bolivia for you.",
+        "Battersea is the new Bolivia, and still you are lost.",
     ]
 }
 
 STRINGS = {
     'en': {
-        'teamW': 'MARTA',
-        'teamM': 'ALEX',
+        'teamW': 'Women',
+        'teamM': 'Men',
         'wordLabel': 'WHO IS THIS FOR?',
         'btnW': 'FOR<br>WOMEN',
         'btnM': 'FOR<br>MEN',
@@ -593,12 +591,41 @@ function showFeedback(){
   elReason.classList.add('show');
 }
 
+function usesAre(word){
+  const w = word.trim().toLowerCase();
+  if(w.startsWith('the phrase')) return false;
+  if(w.endsWith('ss') || w.endsWith('us') || w.endsWith('is')) return false;
+  return w.endsWith('s');
+}
+
+function needsBecause(reason){
+  const r = reason.trim();
+  const l = r.toLowerCase();
+  if(r.endsWith('?') || r.endsWith('!')) return false;
+  if(l.startsWith('because ')) return true;
+  if(l.startsWith("it's ") || l.startsWith('it is ') || l.startsWith('this is ') || l.startsWith('that is ')) return true;
+
+  // Punchline-style reasons read better as their own sentence:
+  // “FOLDING CHAIRS are FOR MEN. You can sit I guess.”
+  // not “because you can sit I guess.”
+  return false;
+}
+
+function sentenceCaseAfterBecause(reason){
+  const r = reason.trim();
+  if(r.toLowerCase().startsWith('because ')) return r.charAt(0).toUpperCase() + r.slice(1);
+  return 'Because ' + r.charAt(0).toLowerCase() + r.slice(1);
+}
+
 function showReason(){
   if(!st.current) return;
   const k=st.current.k;
-  const word=st.current.en[0].toUpperCase();
+  const rawWord=st.current.en[0];
+  const word=rawWord.toUpperCase();
   const reason=st.current.en[1];
-  elReason.innerHTML='<div class="rpanel"><span class="verdict-chip '+vclass(k)+'">'+word+' is '+vlabel(k)+'</span><div class="reason-text">because “'+reason+'”</div></div>';
+  const verb=usesAre(rawWord)?' are ':' is ';
+  const reasonLine=needsBecause(reason)?sentenceCaseAfterBecause(reason):reason;
+  elReason.innerHTML='<div class="rpanel"><span class="verdict-chip '+vclass(k)+'">'+word+verb+vlabel(k)+'</span><div class="reason-text">'+reasonLine+'</div></div>';
   elReason.classList.add('show');
 }
 function hideReason(){ elReason.classList.remove('show'); st.revealActive=false; }
