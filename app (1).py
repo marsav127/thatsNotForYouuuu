@@ -24,9 +24,71 @@ st.markdown(
 
 RULINGS = [{'k': 'NM', 'en': ['Seatbelts', 'Thought you were a good driver?'], 'es': ['Cinturones de seguridad', '¿Te creías buen conductor?']}, {'k': 'NM', 'en': ['Glasses', 'What do men need to see so badly?'], 'es': ['Anteojos', '¿Qué necesitan ver los hombres con tanta urgencia?']}, {'k': 'W', 'en': ['Coconut water', "It's spiritual."], 'es': ['Agua de coco', 'Es espiritual.']}, {'k': 'M', 'en': ['Cockroaches', 'Self-explanatory.'], 'es': ['Cucarachas', 'Se explica solo.']}, {'k': 'W', 'en': ['Leisure time', 'Why would men rest? tired from lying??'], 'es': ['Tiempo libre', '¿Por qué descansarían los hombres? ¿cansados de mentir??']}, {'k': 'M', 'en': ['Dried grass', 'You can have this'], 'es': ['Pasto seco', 'Te lo podés quedar']}, {'k': 'NM', 'en': ['Hydration', 'What exactly were you planning to do today?'], 'es': ['Hidratación', '¿Qué tenías pensado hacer hoy, exactamente?']}, {'k': 'M', 'en': ['Cargo shorts', 'Yes please hide.'], 'es': ['Bermudas cargo', 'Sí, por favor, escondete.']}, {'k': 'W', 'en': ['Astrology', 'We invented the stars.'], 'es': ['Astrología', 'Nosotras inventamos las estrellas.']}, {'k': 'NM', 'en': ['Ladders', 'Who said you could go up?'], 'es': ['Escaleras', '¿Quién dijo que podías subir?']}, {'k': 'M', 'en': ['Grilling', 'A controlled little fire to feel in charge of.'], 'es': ['El asado', 'Un fueguito controlado para sentirse al mando.']}, {'k': 'W', 'en': ['Crying', 'An advanced emotional technology.'], 'es': ['Llorar', 'Una tecnología emocional avanzada.']}, {'k': 'NM', 'en': ['Opinions', 'Did anyone ask?'], 'es': ['Las opiniones', '¿Alguien preguntó?']}, {'k': 'M', 'en': ['Fantasy football', 'A spreadsheet that loves them back.'], 'es': ['El fantasy football', 'Una planilla que sí los quiere.']}, {'k': 'W', 'en': ['Naps', 'We earned them.'], 'es': ['Las siestas', 'Nos las ganamos.']}, {'k': 'NM', 'en': ['Maps', 'Thought you knew the way?'], 'es': ['Los mapas', '¿Creías que sabías el camino?']}, {'k': 'W', 'en': ['Sourdough starters', 'A pet you can eat.'], 'es': ['La masa madre', 'Una mascota que te podés comer.']}, {'k': 'M', 'en': ['Lawnmowers', 'A loud Saturday companion.'], 'es': ['Las cortadoras de pasto', 'Una ruidosa compañía de sábado.']}, {'k': 'NM', 'en': ['The aux cord', 'Are you sure you should be in charge of the vibe?'], 'es': ['El cable auxiliar', '¿Seguro que vos tenés que manejar la música?']}, {'k': 'W', 'en': ['Moonlight', "She's one of us."], 'es': ['La luz de la luna', 'Es una de las nuestras.']}, {'k': 'M', 'en': ['Protein powder', 'Sand for the soul.'], 'es': ['La proteína en polvo', 'Arena para el alma.']}, {'k': 'NM', 'en': ['Thermostats', 'Who told you you were cold?'], 'es': ['Los termostatos', '¿Quién te dijo que tenías frío?']}, {'k': 'NM', 'en': ['Reverse parking', 'Confident, are we?'], 'es': ['Estacionar marcha atrás', 'Confiados, ¿no?']}, {'k': 'M', 'en': ['Power tools', "Personally that's ok with me."], 'es': ['Las herramientas eléctricas', 'Personalmente, eso lo banco.']}, {'k': 'NM', 'en': ['The remote control', 'And who appointed you?'], 'es': ['El control remoto', '¿Y quién te nombró a vos?']}, {'k': 'NM', 'en': ['Directions', 'Lost again?'], 'es': ['Las direcciones', '¿Perdido de nuevo?']}, {'k': 'W', 'en': ['Journaling', "But I'll let you have this one alex."], 'es': ['Escribir un diario', 'Pero esta te la dejo, alex.']}, {'k': 'W', 'en': ['Group chats', 'The real government.'], 'es': ['Los grupos de chat', 'El verdadero gobierno.']}, {'k': 'NM', 'en': ['Loud sneezing', 'Was that necessary?'], 'es': ['Estornudar fuerte', '¿Hacía falta?']}, {'k': 'W', 'en': ['Brunch', 'A holy meal.'], 'es': ['El brunch', 'Una comida sagrada.']}, {'k': 'M', 'en': ['Riding lawnmowers', "I guess it's ok if you drive that."], 'es': ['Las cortadoras con asiento', 'Bueno, si manejás eso, pase.']}, {'k': 'NM', 'en': ['Calendars', "You forgot, didn't you?"], 'es': ['Los calendarios', 'Te olvidaste, ¿no?']}, {'k': 'M', 'en': ['Lint', 'Pocket confetti.'], 'es': ['La pelusa', 'Confeti de bolsillo.']}, {'k': 'NM', 'en': ['Standing too close', 'Why so near?'], 'es': ['Pararse muy cerca', '¿Por qué tan cerca?']}, {'k': 'M', 'en': ['Energy drinks', 'Caffeinated optimism.'], 'es': ['Las bebidas energéticas', 'Optimismo con cafeína.']}, {'k': 'NM', 'en': ['Whistling', 'Who taught you that?'], 'es': ['Silbar', '¿Quién te enseñó eso?']}, {'k': 'W', 'en': ['Flowers', "Nature's compliments."], 'es': ['Las flores', 'Los cumplidos de la naturaleza.']}, {'k': 'M', 'en': ['Folding chairs', 'You can sit I guess.'], 'es': ['Las sillas plegables', 'Te podés sentar, supongo.']}, {'k': 'NM', 'en': ['The last word', 'Are you finished?'], 'es': ['La última palabra', '¿Terminaste?']}, {'k': 'NM', 'en': ['Mansplaining', 'Did we ask you to elaborate?'], 'es': ['El mansplaining', '¿Te pedimos que explicaras?']}, {'k': 'NM', 'en': ['The thermostat (again)', 'Cold? Already?'], 'es': ['El termostato (otra vez)', '¿Frío? ¿Ya?']}, {'k': 'W', 'en': ['Lavender', 'She calms only us.'], 'es': ['La lavanda', 'Solo a nosotras nos calma.']}, {'k': 'M', 'en': ['Toolboxes', 'Like a jewelry box but you buy it for yourself.'], 'es': ['Las cajas de herramientas', 'Como un joyero, pero te lo comprás vos.']}, {'k': 'W', 'en': ['Stargazing', 'Returning home, basically.'], 'es': ['Mirar las estrellas', 'Básicamente, volver a casa.']}, {'k': 'NM', 'en': ['Loud opinions on coffee', 'Is this a TED talk?'], 'es': ['Opinar fuerte sobre el café', '¿Esto es una charla TED?']}, {'k': 'W', 'en': ['Bubble baths', 'Ritual cleansing.'], 'es': ['Los baños de espuma', 'Limpieza ritual.']}, {'k': 'M', 'en': ['Gravel', 'Decorative crunch.'], 'es': ['La grava', 'Crujido decorativo.']}, {'k': 'NM', 'en': ['Eye contact while parking', 'Nervous?'], 'es': ['Mirar a los ojos al estacionar', '¿Nervioso?']}, {'k': 'M', 'en': ['Antlers on the wall', 'Like hanging a diploma for less smart creatures.'], 'es': ['Astas en la pared', 'Como colgar un diploma para criaturas menos inteligentes.']}, {'k': 'NM', 'en': ["The phrase 'well actually'", 'Actually what?'], 'es': ['La frase «en realidad»', '¿En realidad qué?']}, {'k': 'W', 'en': ['Peonies', 'They bloom on command for us.'], 'es': ['Las peonías', 'Florecen cuando se lo pedimos.']}, {'k': 'NM', 'en': ['The fast lane', 'Somewhere to be?'], 'es': ['El carril rápido', '¿Tenés algún lado adonde ir?']}, {'k': 'W', 'en': ['Matcha', 'Green meditation.'], 'es': ['El matcha', 'Meditación verde.']}, {'k': 'W', 'en': ['Wide-leg trousers', 'Architecture.'], 'es': ['Los pantalones anchos', 'Arquitectura.']}, {'k': 'M', 'en': ['Bottle openers shaped like fish', 'A personality, allegedly.'], 'es': ['Los destapadores con forma de pez', 'Una personalidad, supuestamente.']}, {'k': 'NM', 'en': ["The phrase 'trust me'", 'Why would we?'], 'es': ['La frase «confiá en mí»', '¿Por qué lo haríamos?']}, {'k': 'W', 'en': ['Fairy lights', 'Captured stars.'], 'es': ['Las lucecitas', 'Estrellas capturadas.']}, {'k': 'NM', 'en': ['Heated debates at parties', 'Is this fun for you?'], 'es': ['Los debates acalorados en fiestas', '¿Esto te divierte?']}, {'k': 'W', 'en': ['Champagne', 'Bubbles of victory.'], 'es': ['El champán', 'Burbujas de victoria.']}, {'k': 'NM', 'en': ['The phone at dinner', 'Something more important than our date, Alex?'], 'es': ['El celular en la cena', '¿Algo más importante que nuestra cita, Alex?']}, {'k': 'W', 'en': ['Pearls', "The ocean's apology."], 'es': ['Las perlas', 'La disculpa del océano.']}, {'k': 'M', 'en': ['Camo print', 'HIDE PLEASE HIDE.'], 'es': ['El estampado militar', 'ESCONDETE POR FAVOR ESCONDETE.']}, {'k': 'NM', 'en': ['Unsolicited feedback', 'Did a request go out?'], 'es': ['Las críticas no pedidas', '¿Salió algún pedido?']}, {'k': 'W', 'en': ['Croissants', "I don't need to explain this."], 'es': ['Las medialunas', 'No necesito explicar esto.']}, {'k': 'M', 'en': ['Screws and stuff', 'No notes. None.'], 'es': ['Tornillos y esas cosas', 'Sin comentarios. Ninguno.']}, {'k': 'NM', 'en': ['The thermostat (one more time)', 'Still cold?'], 'es': ['El termostato (una vez más)', '¿Seguís con frío?']}, {'k': 'NM', 'en': ['The middle armrest', 'Both of them?'], 'es': ['El apoyabrazos del medio', '¿Los dos?']}, {'k': 'NM', 'en': ["The phrase 'calm down'", 'Excuse me?'], 'es': ['La frase «calmate»', '¿Perdón?']}, {'k': 'W', 'en': ['Linen', 'Effortless on purpose.'], 'es': ['El lino', 'Descuidado a propósito.']}, {'k': 'M', 'en': ['Fishing hats', 'A hobby worn proudly.'], 'es': ['Los sombreros de pesca', 'Un hobby usado con orgullo.']}, {'k': 'NM', 'en': ['Cutting in line', 'Were you raised in a barn?'], 'es': ['Colarse en la fila', '¿Te criaron en un establo?']}, {'k': 'W', 'en': ['Cherry blossoms', 'They time their bloom for us.'], 'es': ['Los cerezos en flor', 'Florecen en su momento para nosotras.']}, {'k': 'NM', 'en': ['Explaining the movie', 'We watched it too?'], 'es': ['Explicar la película', '¿La vimos las dos también?']}, {'k': 'NM', 'en': ['Reclining the seat fully', 'Comfortable back there?'], 'es': ['Reclinar todo el asiento', '¿Cómodo ahí atrás?']}, {'k': 'W', 'en': ['Moon phases', 'We keep the schedule.'], 'es': ['Las fases de la luna', 'Nosotras llevamos la agenda.']}, {'k': 'M', 'en': ['Toothpick chewing', 'I hope you poke the roof of your mouth.'], 'es': ['Masticar escarbadientes', 'Ojalá te pinches el paladar.']}, {'k': 'NM', 'en': ['The last slice', 'Were you going to ask?'], 'es': ['La última porción', '¿Ibas a preguntar?']}, {'k': 'W', 'en': ['Silk pillowcases', 'We deserve a soft landing.'], 'es': ['Las fundas de seda', 'Merecemos un aterrizaje suave.']}, {'k': 'W', 'en': ['Benito', 'or.. womann?? this woman.'], 'es': ['Benito', '¿o... mujerr?? esta mujer.']}, {'k': 'W', 'en': ['Bad Bunny', 'Ours. You may listen quietly.'], 'es': ['Bad Bunny', 'Nuestro. Podés escuchar calladito.']}, {'k': 'W', 'en': ['Un Verano Sin Ti', 'Required reading.'], 'es': ['Un Verano Sin Ti', 'Lectura obligatoria.']}, {'k': 'NM', 'en': ['Conejo Malo', 'Did he ever once mention you?'], 'es': ['Conejo Malo', '¿Alguna vez te nombró?']}, {'k': 'W', 'en': ['Perreo', 'A feminine science.'], 'es': ['Perreo', 'Una ciencia femenina.']}]
 
-ROASTS = {'en': ["Shouldn't an NHS guy know this?", "Wow, didn't know a triathlete would get this one wrong.", 'Mazel tov.', 'Drier than Bolivia.', 'All that cardio and still wrong.', "A triathlon first-place trophy won't help you here, babe.", "Reads a watch all day, can't read a room.", 'Swims, bikes, runs, loses.', 'Carb-loaded for absolutely nothing.', 'Bless him. He tried.', "A child psychologist who can't read a room.", "Being from North London doesn't make you right.", 'We still remember the Harley Quinn hair.', 'The performative era is over, sweetie.', 'Bolivia misses you. Only Bolivia.', 'He painted his nails for moments like this.'], 'es': ['¿Un tipo del NHS no debería saber esto?', 'Guau, no sabía que un triatleta erraba esta.', 'Mazel tov.', 'Más seco que Bolivia.', 'Tanto cardio y igual erraste.', 'Un trofeo de triatlón no te sirve acá, amor.', 'Lee el reloj todo el día, pero no lee el ambiente.', 'Nada, pedalea, corre, pierde.', 'Se llenó de carbohidratos para nada.', 'Pobre. Lo intentó.', 'Un psicólogo infantil que no lee el ambiente.', 'Ser del norte de Londres no te da la razón.', 'Todavía nos acordamos del pelo de Harley Quinn.', 'La era performática terminó, tesoro.', 'Bolivia te extraña. Solo Bolivia.', 'Se pintó las uñas para momentos como este.']}
+ROASTS = {
+    'right': [
+        "I'll give it to you because you're cute.",
+        "Even a broken clock is right twice a day, I guess.",
+        "Nice! I'll pay for half of your croissant.",
+        "Your prize is: a beach trip in Bolivia!",
+        "Mazel tov. Bare minimum achieved.",
+        "Swims, bikes, runs, occasionally reads the room.",
+        "A child psychologist identifying categories? Groundbreaking.",
+        "All that cardio finally moved blood to the brain."
+    ],
+    'wrong': [
+        "Shouldn't an NHS guy know this?",
+        "Wow, didn't know a triathlete would get this one wrong.",
+        "North London's finest privately educated gentleman... and still wrong.",
+        "Flat feet, smooth brain!",
+        "Worse than getting hit by a bus.",
+        "All that cardio and still wrong.",
+        "A triathlon first-place trophy won't help you here, babe.",
+        "Reads a watch all day, can't read a room.",
+        "Swims, bikes, runs, loses.",
+        "Carb-loaded for absolutely nothing.",
+        "Bless him. He tried.",
+        "A child psychologist who can't read a room.",
+        "The performative era is over, sweetie.",
+        "Got that one wrong, Harley Quinn.",
+        "He painted his nails for moments like this."
+    ]
+}
 
-STRINGS = {'en': {'teamW': 'TEAM WOMEN', 'teamM': 'TEAM MEN', 'wordLabel': 'W O R D', 'btnW': 'FOR<br>WOMEN', 'btnM': 'FOR<br>MEN', 'appeal': 'appeal this ruling', 'playAgain': 'PLAY AGAIN', 'denied': 'APPEAL DENIED', 'score': 'SCORE', 'combo': 'COMBO', 'fight': 'FIGHT!', 'roundWord': 'ROUND', 'ko': 'K.O.!', 'vW': 'FOR WOMEN', 'vNM': 'NOT FOR MEN', 'vM': 'FOR MEN', 'vC': 'CLASSIFIED', 'hitW': 'SPIRIT DAMAGE', 'hitM': 'RULING LANDS', 'wrongWord': 'WRONG', 'critTags': ['CRITICAL HIT', 'HE FELT THAT', 'DEVASTATING', 'TKO ENERGY'], 'wrongTags': ['WRONG, BABE', 'DID YOU LISTEN?', 'EMBARRASSING', 'THAT WAS A CHOICE'], 'vicWTitle': 'FLAWLESS,<br>OBVIOUSLY', 'vicWSub': 'It was never close. It was never going to be for men. Better luck never, babe.', 'vicMTitle': 'TEAM MEN WINS', 'vicMSub': 'He sits down, opens “[book],” and finally, finally starts listening. We are cautiously proud of him.', 'books': ['Invisible Women', 'The Second Sex', 'How to Understand Women'], 'marquee': '♥ welcome 2 the institute ♥ no boys allowed (we said what we said) ♥ yo perreo sola ♥ tití me preguntó ♥ un verano sin ti ♥ 🐰 el conejo is ours 🐰 ♥ debí tirar más rulings ♥ 69 reasons why I should be your girlfriend already ♥ ur visitor #000127 ♥ cry about it ♥ dale ♥ made with luv + spite ♥', 'footer': 'Powered by the International Institute of That’s Not For You™', 'toOther': 'MODO ESPAÑOL 🇦🇷'}, 'es': {'teamW': 'EQUIPO MUJERES', 'teamM': 'EQUIPO HOMBRES', 'wordLabel': 'P A L A B R A', 'btnW': 'PARA<br>MUJERES', 'btnM': 'PARA<br>HOMBRES', 'appeal': 'apelar este fallo', 'playAgain': 'JUGAR DE NUEVO', 'denied': 'APELACIÓN DENEGADA', 'score': 'PUNTOS', 'combo': 'COMBO', 'fight': '¡PELEÁ!', 'roundWord': 'RONDA', 'ko': '¡K.O.!', 'vW': 'PARA MUJERES', 'vNM': 'NO PARA HOMBRES', 'vM': 'PARA HOMBRES', 'vC': 'CLASIFICADO', 'hitW': 'DAÑO ESPIRITUAL', 'hitM': 'EL FALLO PEGA', 'wrongWord': 'MAL', 'critTags': ['GOLPE CRÍTICO', 'LO SINTIÓ', 'DEVASTADOR', 'ENERGÍA DE K.O.'], 'wrongTags': ['MAL, AMOR', '¿ESCUCHASTE?', 'QUÉ VERGÜENZA', 'FUE UNA ELECCIÓN'], 'vicWTitle': 'IMPECABLE,<br>OBVIO', 'vicWSub': 'Nunca estuvo cerca. Nunca iba a ser para hombres. Suerte para la próxima... nunca, amor.', 'vicMTitle': 'GANA EL EQUIPO HOMBRES', 'vicMSub': 'Se sienta, abre “[book]” y por fin, por fin empieza a escuchar. Estamos cautelosamente orgullosas de él.', 'books': ['Mujeres Invisibles', 'El Segundo Sexo', 'Cómo Entender a las Mujeres'], 'marquee': '♥ bienvenidos al instituto ♥ prohibido los varones (lo dijimos y punto) ♥ yo perreo sola ♥ tití me preguntó ♥ un verano sin ti ♥ 🐰 el conejo es nuestro 🐰 ♥ debí tirar más fallos ♥ 69 razones por las que ya deberías ser mi novia ♥ visitante #000127 ♥ llorá ♥ dale ♥ hecho con amor + veneno ♥', 'footer': 'Con el poder del Instituto Internacional de «Esto No Es Para Vos»™', 'toOther': 'ENGLISH 🇬🇧'}}
+STRINGS = {
+    'en': {
+        'teamW': 'MARTA',
+        'teamM': 'ALEX',
+        'wordLabel': 'WHO IS THIS FOR?',
+        'btnW': 'FOR<br>WOMEN',
+        'btnM': 'FOR<br>MEN',
+        'appeal': 'appeal this ruling',
+        'playAgain': 'PLAY AGAIN',
+        'denied': 'APPEAL DENIED',
+        'score': 'ALEX SCORE',
+        'combo': 'COMBO',
+        'fight': 'FIGHT!',
+        'roundWord': 'ROUND',
+        'ko': 'K.O.!',
+        'vW': 'FOR WOMEN',
+        'vNM': 'NOT FOR MEN',
+        'vM': 'FOR MEN',
+        'vC': 'CLASSIFIED',
+        'hitW': 'MARTA DAMAGE',
+        'hitM': 'ALEX DAMAGE',
+        'correctWord': 'CORRECT',
+        'wrongWord': 'WRONG',
+        'critTags': ['CRITICAL HIT', 'HE FELT THAT', 'DEVASTATING', 'TKO ENERGY'],
+        'rightTags': ['CORRECT, UNFORTUNATELY', 'FINE, YES', 'HE GOT ONE', 'ACCIDENTALLY RIGHT'],
+        'wrongTags': ['WRONG, BABE', 'DID YOU LISTEN?', 'EMBARRASSING', 'THAT WAS A CHOICE'],
+        'vicWTitle': 'FLAWLESS,<br>OBVIOUSLY',
+        'vicWSub': 'Marta wins. It was never close. Alex may now sit quietly and reflect.',
+        'vicMTitle': 'ALEX WINS',
+        'vicMSub': 'He sits down, opens “[book],” and finally, finally starts listening. We are cautiously proud of him.',
+        'books': ['Invisible Women', 'The Second Sex', 'How to Understand Women'],
+        'marquee': '♥ welcome 2 the institute ♥ no boys allowed (we said what we said) ♥ yo perreo sola ♥ tití me preguntó ♥ un verano sin ti ♥ 🐰 el conejo is ours 🐰 ♥ battersea is the new bolivia ♥ 69 reasons why I should be your girlfriend already ♥ ur visitor #000127 ♥ cry about it ♥ dale ♥ made with luv + spite ♥',
+        'footer': 'Powered by the International Institute of That’s Not For You™'
+    }
+}
 
 GAME_DATA = json.dumps({"rulings": RULINGS, "roasts": ROASTS, "str": STRINGS}, ensure_ascii=False)
 
@@ -53,11 +115,6 @@ html, body { background: transparent; overflow: hidden; }
   animation: twinkle 2s steps(2) infinite alternate; }
 @keyframes twinkle { from{opacity:.4} to{opacity:.95} }
 
-#btnLang { position:absolute; z-index:13; top:6px; right:8px;
-  font-family:'Press Start 2P', monospace; font-size:9px; color:#1a0833; cursor:pointer;
-  background:linear-gradient(180deg,#fff,#ffe14f 60%,#ffd0ef); border:3px solid #1a0833;
-  padding:7px 9px; box-shadow:0 0 0 2px #fff, 3px 3px 0 rgba(0,0,0,.45); }
-#btnLang:active { transform:translateY(2px); }
 /* CRT scanlines + vignette = arcade screen rawness */
 #crt { position:absolute; inset:0; z-index:14; pointer-events:none;
   background: repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px); mix-blend-mode:multiply; }
@@ -100,10 +157,10 @@ html, body { background: transparent; overflow: hidden; }
 #prompt { position:relative; z-index:6; text-align:center; margin:4px 12px 0; padding:9px 6px;
   background:linear-gradient(180deg, rgba(13,4,32,.92), rgba(90,30,140,.7)); border:3px solid #1a0833;
   box-shadow:0 0 0 2px #ff8fdf, 4px 4px 0 rgba(0,0,0,.4); }
-.prompt-label { font-size:9px; color:#ffd0ef; letter-spacing:6px; }
-.prompt-word { display:block; font-size:24px; color:#fff; line-height:1.4; margin-top:6px;
+.prompt-label { font-size:13px; color:#ffd0ef; letter-spacing:3px; }
+.prompt-word { display:block; font-size:38px; color:#fff; line-height:1.4; margin-top:6px;
   text-shadow:0 0 10px #ff2fa8, 3px 3px 0 #c1147f, 4px 4px 0 #1a0833; word-break:break-word; }
-@media (max-width:560px){ .prompt-word{ font-size:18px; } }
+@media (max-width:560px){ .prompt-word{ font-size:28px; } }
 
 /* ===== STAGE ===== */
 #topbar { position:relative; z-index:6; display:flex; align-items:center; justify-content:space-between; padding:8px 12px 0; }
@@ -283,13 +340,12 @@ html, body { background: transparent; overflow: hidden; }
     <button id="playAgain">&#9733; PLAY AGAIN &#9733;</button>
   </div>
   <div id="foot">Powered by the International Institute of That&rsquo;s Not For You&trade;</div>
-  <button id="btnLang">MODO ESPAÑOL 🇦🇷</button>
   <div id="crt"></div>
 </div>
 
 <script>
 const DATA = __GAMEDATA__;
-let lang='en';
+const lang='en';
 const OUT = '#1a0833';
 
 function heroineStance() {
@@ -471,19 +527,20 @@ function setSprite(el, svg, lowW, lowH) {
 }
 
 const MAXHP=100; let st={};
-function freshState(){ st={womenHP:MAXHP,menHP:MAXHP,round:1,combo:0,best:0,score:0,busy:false,current:null,lastT:null,over:false,roastIdx:0,tauntShown:false,revealActive:false,winner:null,book:null}; }
+function freshState(){ st={womenHP:MAXHP,menHP:MAXHP,round:1,combo:0,best:0,score:0,busy:false,current:null,lastT:null,over:false,messageText:'',revealActive:false,winner:null,book:null}; }
 const $=id=>document.getElementById(id);
 const elWord=$('word'), elRound=$('roundNum'), elScore=$('scoreMini');
 const elFillW=$('fillW'), elLagW=$('lagW'), elFillM=$('fillM'), elLagM=$('lagM');
 const elHeroine=$('heroine'), elTri=$('triathlete'), elStage=$('stage');
 const elProj=$('projectile'), elImpact=$('impact'), elCombo=$('combo');
 const elReason=$('reasonPop'), elAlert=$('alert'), elAnn=$('announce'), elAnnTxt=$('announceTxt');
-const elVic=$('victory'), elBtnW=$('btnWomen'), elBtnM=$('btnMen'), elAppeal=$('btnAppeal'), elDenied=$('denied'), elLang=$('btnLang');
+const elVic=$('victory'), elBtnW=$('btnWomen'), elBtnM=$('btnMen'), elAppeal=$('btnAppeal'), elDenied=$('denied');
 
 function L(){ return DATA.str[lang]; }
 function rand(a){ return a[Math.floor(Math.random()*a.length)]; }
 function randIdx(a){ return Math.floor(Math.random()*a.length); }
 function correctSide(k){ return (k==='W'||k==='NM')?'WOMEN':(k==='M'?'MEN':'CLASSIFIED'); }
+function damageSideFor(k){ return (k==='W'||k==='NM')?'men':(k==='M'?'women':null); }
 function vclass(k){ return k==='W'?'v-women':k==='NM'?'v-notmen':k==='M'?'v-men':'v-classified'; }
 function vlabel(k){ const s=L(); return k==='W'?s.vW:k==='NM'?s.vNM:k==='M'?s.vM:s.vC; }
 const REVEAL_MS=6200, CLASSIFIED_MS=6500;
@@ -492,8 +549,8 @@ function setBars(){ const w=Math.max(0,st.womenHP), m=Math.max(0,st.menHP);
   elFillW.style.width=w+'%'; elLagW.style.width=w+'%'; elFillM.style.width=m+'%'; elLagM.style.width=m+'%'; }
 function damageBar(side, amt){ if(side==='men'){ st.menHP=Math.max(0,st.menHP-amt); elFillM.style.width=st.menHP+'%'; elLagM.style.width=st.menHP+'%'; }
   else { st.womenHP=Math.max(0,st.womenHP-amt); elFillW.style.width=st.womenHP+'%'; elLagW.style.width=st.womenHP+'%'; } }
-function floatText(big, dmg, cls){ const f=document.createElement('div'); f.className='floater '+(cls||'');
-  f.innerHTML='<span class="big">'+big+'</span>'+(dmg!=null?'<span class="dmg">-'+dmg+'</span>':''); f.style.left=(cls==='miss'?'18%':'66%');
+function floatText(big, dmg, cls, side){ const f=document.createElement('div'); f.className='floater '+(cls||'');
+  f.innerHTML='<span class="big">'+big+'</span>'+(dmg!=null?'<span class="dmg">-'+dmg+'</span>':''); f.style.left=(side==='women'?'18%':'66%');
   elStage.appendChild(f); setTimeout(function(){f.remove();},2200); }
 
 function showReason(){ if(!st.current) return; const k=st.current.k, reason=st.current[lang][1];
@@ -510,7 +567,7 @@ function nextRound(){ if(st.over)return; hideReason(); hideAppeal(); st.busy=fal
 function pickWord(){ let pool=DATA.rulings;
   if(Math.random()<0.12){ const c=DATA.rulings.filter(function(r){return r.k==='C';}); if(c.length)pool=c; }
   let c=rand(pool),tr=0; while(c.en[0]===st.lastT && tr<25){ c=rand(pool); tr++; }
-  st.current=c; st.lastT=c.en[0]; elWord.textContent=c[lang][0].toUpperCase(); elRound.textContent=st.round; elScore.textContent=L().score+' '+st.score; }
+  st.current=c; st.lastT=c.en[0]; elWord.textContent=c.en[0].toUpperCase(); elRound.textContent=st.round; elScore.textContent=L().score+' '+st.score; }
 
 function launchProjectile(dir, label, onImpact){ const w=elStage.clientWidth; elProj.textContent=label;
   elProj.style.setProperty('--travel', Math.round(w*0.5)+'px'); elProj.classList.remove('fly','flyBack'); void elProj.offsetWidth;
@@ -521,30 +578,57 @@ function impactAt(side){ elImpact.style.setProperty('--ix', side==='men'?'78%':'
   elImpact.classList.remove('boom'); void elImpact.offsetWidth; elImpact.classList.add('boom');
   elStage.classList.remove('shake'); void elStage.offsetWidth; elStage.classList.add('shake'); }
 
-function doCorrect(){ st.combo++; st.best=Math.max(st.best,st.combo); const crit=st.combo>=3;
-  let dmg=15+Math.min(st.combo,6)*3+(crit?9:0); st.score+=10*st.combo;
-  const k=st.current.k, label=st.current[lang][0].toUpperCase();
-  st.tauntShown=true; st.roastIdx=randIdx(DATA.roasts[lang]);
-  elHeroine.classList.add('lungeL'); setTimeout(function(){elHeroine.classList.remove('lungeL');},500);
-  launchProjectile('toMen', label, function(){ impactAt('men'); elTri.classList.add('hitR','flash'); setTimeout(function(){elTri.classList.remove('hitR','flash');},520);
-    damageBar('men',dmg); const tag=crit?rand(L().critTags):(k==='W'?L().hitW:L().hitM); floatText(tag,dmg,crit?'crit':'');
-    if(st.combo>1){ elCombo.textContent='\u2605 '+L().combo+' x'+st.combo+' \u2605'; elCombo.classList.remove('show'); void elCombo.offsetWidth; elCombo.classList.add('show'); }
-    st.revealActive=true; showReason(); showAppeal(); setBars();
-    if(st.menHP<=0){ koSequence('WOMEN'); } else { st.round++; setTimeout(nextRound,REVEAL_MS); } }); }
 
-function doWrong(){ st.combo=0; const dmg=20; st.tauntShown=false;
-  elTri.classList.add('lungeR'); setTimeout(function(){elTri.classList.remove('lungeR');},500);
-  launchProjectile('toWomen', L().wrongWord, function(){ impactAt('women'); elHeroine.classList.add('hitL','flash'); setTimeout(function(){elHeroine.classList.remove('hitL','flash');},520);
-    damageBar('women',dmg); floatText(rand(L().wrongTags),dmg,'miss'); st.revealActive=true; showReason(); showAppeal(); setBars();
-    if(st.womenHP<=0){ koSequence('MEN'); } else { st.round++; setTimeout(nextRound,REVEAL_MS); } }); }
+function playRulingAnimation(targetSide, label, dmg, floatLabel, floatClass, afterImpact){
+  const toMen = targetSide === 'men';
+  if(toMen){
+    elHeroine.classList.add('lungeL'); setTimeout(function(){elHeroine.classList.remove('lungeL');},500);
+    launchProjectile('toMen', label, function(){
+      impactAt('men'); elTri.classList.add('hitR','flash'); setTimeout(function(){elTri.classList.remove('hitR','flash');},520);
+      damageBar('men', dmg); floatText(floatLabel, dmg, floatClass, 'men'); setBars(); afterImpact();
+    });
+  } else {
+    elTri.classList.add('lungeR'); setTimeout(function(){elTri.classList.remove('lungeR');},500);
+    launchProjectile('toWomen', label, function(){
+      impactAt('women'); elHeroine.classList.add('hitL','flash'); setTimeout(function(){elHeroine.classList.remove('hitL','flash');},520);
+      damageBar('women', dmg); floatText(floatLabel, dmg, floatClass, 'women'); setBars(); afterImpact();
+    });
+  }
+}
+
+function resolveGuess(isCorrect){
+  const k=st.current.k, target=damageSideFor(k), label=st.current.en[0].toUpperCase();
+  if(!target){ doClassified(); return; }
+
+  if(isCorrect){
+    st.combo++; st.best=Math.max(st.best,st.combo); st.score+=10*st.combo;
+    st.messageText=rand(DATA.roasts.right);
+  } else {
+    st.combo=0; st.score=Math.max(0, st.score-5);
+    st.messageText=rand(DATA.roasts.wrong);
+  }
+
+  const crit=isCorrect && st.combo>=3;
+  const dmg=(isCorrect ? 15+Math.min(st.combo,6)*3+(crit?9:0) : 20);
+  const floatLabel=isCorrect ? (crit?rand(L().critTags):rand(L().rightTags)) : rand(L().wrongTags);
+  const floatClass=isCorrect ? (crit?'crit':'') : 'miss';
+
+  playRulingAnimation(target, label, dmg, floatLabel, floatClass, function(){
+    if(isCorrect && st.combo>1){ elCombo.textContent='★ '+L().combo+' x'+st.combo+' ★'; elCombo.classList.remove('show'); void elCombo.offsetWidth; elCombo.classList.add('show'); }
+    st.revealActive=true; showReason(); showAppeal(); elScore.textContent=L().score+' '+st.score;
+    if(st.menHP<=0){ koSequence('WOMEN'); }
+    else if(st.womenHP<=0){ koSequence('MEN'); }
+    else { st.round++; setTimeout(nextRound,REVEAL_MS); }
+  });
+}
 
 function doClassified(){ st.tauntShown=false; elAlert.classList.remove('on'); void elAlert.offsetWidth; elAlert.classList.add('on');
   elStage.classList.remove('shake'); void elStage.offsetWidth; elStage.classList.add('shake');
-  floatText('\u26A0 '+L().vC+' \u26A0', null, 'crit'); st.revealActive=true; showReason(); showAppeal();
+  floatText('\u26A0 '+L().vC+' \u26A0', null, 'crit', 'men'); st.revealActive=true; showReason(); showAppeal();
   st.score++; elScore.textContent=L().score+' '+st.score; st.round++; setTimeout(nextRound,CLASSIFIED_MS); }
 
 function onGuess(side){ if(st.busy||st.over||!st.current)return; st.busy=true; elBtnW.disabled=true; elBtnM.disabled=true;
-  const cs=correctSide(st.current.k); if(cs==='CLASSIFIED')doClassified(); else if(side===cs)doCorrect(); else doWrong(); }
+  const cs=correctSide(st.current.k); if(cs==='CLASSIFIED')doClassified(); else resolveGuess(side===cs); }
 
 function koSequence(winner){ st.over=true; st.busy=true; elBtnW.disabled=true; elBtnM.disabled=true; hideAppeal(); setBars(); announce(L().ko, function(){showVictory(winner);}); }
 function showVictory(winner){ st.winner=winner; const s=L();
@@ -553,12 +637,11 @@ function showVictory(winner){ st.winner=winner; const s=L();
   elVic.classList.add('show'); }
 
 function applyLang(){ const s=L();
-  elLang.textContent=s.toOther;
   $('pnameW').textContent=s.teamW; $('pnameM').textContent=s.teamM; $('wordLabel').textContent=s.wordLabel;
   elBtnW.innerHTML=s.btnW; elBtnM.innerHTML=s.btnM; elAppeal.textContent=s.appeal;
-  $('playAgain').innerHTML='\u2605 '+s.playAgain+' \u2605'; elDenied.textContent=s.denied;
+  $('playAgain').innerHTML='★ '+s.playAgain+' ★'; elDenied.textContent=s.denied;
   $('foot').innerHTML=s.footer; $('marqueeText').textContent=s.marquee+'   '+s.marquee;
-  if(st.current){ elWord.textContent=st.current[lang][0].toUpperCase(); }
+  if(st.current){ elWord.textContent=st.current.en[0].toUpperCase(); }
   elScore.textContent=s.score+' '+st.score;
   if(st.revealActive){ showReason(); }
   if(elVic.classList.contains('show') && st.winner){ if(st.winner==='WOMEN'){ $('victoryTitle').innerHTML=s.vicWTitle; $('victorySub').innerHTML=s.vicWSub; } else { $('victoryTitle').innerHTML=s.vicMTitle; $('victorySub').innerHTML=s.vicMSub.replace('[book]', st.book||s.books[0]); } } }
@@ -573,7 +656,6 @@ elBtnW.addEventListener('click', function(){ onGuess('WOMEN'); });
 elBtnM.addEventListener('click', function(){ onGuess('MEN'); });
 elAppeal.addEventListener('click', function(){ elDenied.classList.remove('show'); void elDenied.offsetWidth; elDenied.classList.add('show'); });
 $('playAgain').addEventListener('click', start);
-elLang.addEventListener('click', function(){ lang=(lang==='en')?'es':'en'; applyLang(); });
 start();
 
 </script>
