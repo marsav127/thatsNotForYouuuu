@@ -108,10 +108,6 @@ html, body { background: transparent; overflow: hidden; }
 /* ===== STAGE ===== */
 #topbar { position:relative; z-index:6; display:flex; align-items:center; justify-content:space-between; padding:8px 12px 0; }
 #topbar .title { font-family:'Press Start 2P',monospace; font-size:10px; color:#fff; letter-spacing:1px; text-shadow:2px 2px 0 #1a0833, 0 0 8px #ff2fa8; }
-#langBtn { font-family:'Press Start 2P',monospace; font-size:9px; color:#1a0833; cursor:pointer; line-height:1.4;
-  background:linear-gradient(180deg,#fff,#ffd0ef); border:3px solid #1a0833; padding:7px 9px;
-  box-shadow:0 0 0 2px #fff, 3px 3px 0 rgba(0,0,0,.4); }
-#langBtn:active { transform:translate(2px,2px); }
 #stage { position:absolute; left:0; right:0; top:178px; bottom:112px; z-index:4; overflow:hidden; }
 .floor { position:absolute; left:-10%; right:-10%; bottom:0; height:42%;
   background: repeating-linear-gradient(90deg, rgba(255,143,223,.3) 0 3px, transparent 3px 44px),
@@ -244,7 +240,7 @@ html, body { background: transparent; overflow: hidden; }
 </style>
 
 <div id="cabinet">
-  <div id="topbar"><div class="title" id="title">THAT'S NOT FOR YOU</div><button id="langBtn">modo español</button></div>
+  <div id="topbar"><div class="title" id="title">THAT'S NOT FOR YOU</div></div>
   <div id="hud">
     <div class="bar-wrap left">
       <div class="bar-top"><div class="portrait" id="portraitW"></div><div class="pname" id="pnameW">TEAM WOMEN</div></div>
@@ -558,7 +554,7 @@ function showVictory(winner){ st.winner=winner; const s=L();
 
 function applyLang(){ const s=L();
   elLang.textContent=s.toOther;
-  $('nameW').textContent=s.teamW; $('nameM').textContent=s.teamM; $('promptLabel').textContent=s.wordLabel;
+  $('pnameW').textContent=s.teamW; $('pnameM').textContent=s.teamM; $('wordLabel').textContent=s.wordLabel;
   elBtnW.innerHTML=s.btnW; elBtnM.innerHTML=s.btnM; elAppeal.textContent=s.appeal;
   $('playAgain').innerHTML='\u2605 '+s.playAgain+' \u2605'; elDenied.textContent=s.denied;
   $('foot').innerHTML=s.footer; $('marqueeText').textContent=s.marquee+'   '+s.marquee;
