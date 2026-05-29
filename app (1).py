@@ -1,20 +1,17 @@
+# -*- coding: utf-8 -*-
 import json
 import streamlit as st
 import streamlit.components.v1 as components
 
 # ---------------------------------------------------------------------------
-# THAT'S NOT FOR YOU  -  ARCADE FIGHTING EDITION (pixel-art / Y2K cut)
+# THAT'S NOT FOR YOU  -  ARCADE FIGHTING EDITION (bilingual EN / AR-ES cut)
 # A ridiculous magical-girl fighting game whose sole purpose is to determine
-# whether random objects are FOR WOMEN or FOR MEN.
-# Street Fighter, reimagined by a 13-year-old girl in 2004.
-#
-# Runs entirely client-side in one isolated HTML/JS screen. Fighters are drawn
-# into a low-res canvas and upscaled nearest-neighbour for chunky 16-bit sprites;
-# CRT scanlines sit over the whole cabinet.
+# whether random objects are FOR WOMEN or FOR MEN. Now with a "learning
+# Spanish" toggle (neutral Rioplatense) so Alex can study while he loses.
+# Runs entirely client-side; fighters are chunky upscaled pixel sprites.
 # ---------------------------------------------------------------------------
 
 st.set_page_config(page_title="THAT'S NOT FOR YOU", page_icon=":sparkles:", layout="wide")
-
 st.markdown(
     '''<style>
     #MainMenu, header, footer {visibility:hidden;}
@@ -25,149 +22,13 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ---------------------------------------------------------------------------
-# The Rulings (110+ official rulings)  -  UNCHANGED. Do not rewrite.
-# verdict is one of: "FOR WOMEN", "NOT FOR MEN", "FOR MEN", "CLASSIFIED"
-# Comedy rule: NOT FOR MEN reasons are shady rhetorical questions.
-# ---------------------------------------------------------------------------
-RULINGS = [
-    {"thing": "Seatbelts", "verdict": "NOT FOR MEN", "reason": "Thought you were a good driver?"},
-    {"thing": "Glasses", "verdict": "NOT FOR MEN", "reason": "What do men need to see so badly?"},
-    {"thing": "Coconut water", "verdict": "FOR WOMEN", "reason": "It's spiritual."},
-    {"thing": "Cockroaches", "verdict": "FOR MEN", "reason": "Self-explanatory."},
-    {"thing": "Leisure time", "verdict": "FOR WOMEN", "reason": "Rest is a feminine art form."},
-    {"thing": "Dried grass", "verdict": "FOR MEN", "reason": "Decorative dirt."},
-    {"thing": "Hydration", "verdict": "NOT FOR MEN", "reason": "What exactly were you planning to do today?"},
-    {"thing": "Soup", "verdict": "FOR WOMEN", "reason": "Liquid intuition."},
-    {"thing": "Cargo shorts", "verdict": "FOR MEN", "reason": "A natural habitat."},
-    {"thing": "Astrology", "verdict": "FOR WOMEN", "reason": "We invented the stars."},
-    {"thing": "Ladders", "verdict": "NOT FOR MEN", "reason": "Who said you could go up?"},
-    {"thing": "Lip gloss", "verdict": "FOR WOMEN", "reason": "Obviously."},
-    {"thing": "Grilling", "verdict": "FOR MEN", "reason": "A controlled little fire to feel in charge of."},
-    {"thing": "Crying", "verdict": "FOR WOMEN", "reason": "An advanced emotional technology."},
-    {"thing": "Opinions on jazz", "verdict": "NOT FOR MEN", "reason": "Did anyone ask?"},
-    {"thing": "Candles", "verdict": "FOR WOMEN", "reason": "Tiny altars."},
-    {"thing": "Fantasy football", "verdict": "FOR MEN", "reason": "A spreadsheet that loves them back."},
-    {"thing": "Forks", "verdict": "NOT FOR MEN", "reason": "Were you taught manners or not?"},
-    {"thing": "Skincare", "verdict": "FOR WOMEN", "reason": "Maintenance of the temple."},
-    {"thing": "Naps", "verdict": "FOR WOMEN", "reason": "We earned them."},
-    {"thing": "Maps", "verdict": "NOT FOR MEN", "reason": "Why are you so confident you know the way?"},
-    {"thing": "Sourdough starters", "verdict": "FOR WOMEN", "reason": "A pet you can eat."},
-    {"thing": "Lawnmowers", "verdict": "FOR MEN", "reason": "A loud Saturday companion."},
-    {"thing": "The aux cord", "verdict": "NOT FOR MEN", "reason": "Are you sure you should be in charge of the vibe?"},
-    {"thing": "Moonlight", "verdict": "FOR WOMEN", "reason": "She's one of us."},
-    {"thing": "Protein powder", "verdict": "FOR MEN", "reason": "Sand for the soul."},
-    {"thing": "Thermostats", "verdict": "NOT FOR MEN", "reason": "Who told you you were cold?"},
-    {"thing": "Tea", "verdict": "FOR WOMEN", "reason": "Liquid gossip."},
-    {"thing": "Spreadsheets", "verdict": "CLASSIFIED", "reason": "The Institute is still deliberating."},
-    {"thing": "Reverse parking", "verdict": "NOT FOR MEN", "reason": "Confident, are we?"},
-    {"thing": "Embroidery", "verdict": "FOR WOMEN", "reason": "Tiny acts of devotion."},
-    {"thing": "Power tools", "verdict": "FOR MEN", "reason": "Loud forgiveness machines."},
-    {"thing": "The remote control", "verdict": "NOT FOR MEN", "reason": "And who appointed you?"},
-    {"thing": "Perfume", "verdict": "FOR WOMEN", "reason": "Bottled mood lighting."},
-    {"thing": "Beard oil", "verdict": "FOR MEN", "reason": "Furniture polish for the face."},
-    {"thing": "Directions", "verdict": "NOT FOR MEN", "reason": "Lost again?"},
-    {"thing": "Journaling", "verdict": "FOR WOMEN", "reason": "An ancient feminine record-keeping."},
-    {"thing": "Garage shelving", "verdict": "FOR MEN", "reason": "A kingdom of unused buckets."},
-    {"thing": "Group chats", "verdict": "FOR WOMEN", "reason": "The real government."},
-    {"thing": "Loud sneezing", "verdict": "NOT FOR MEN", "reason": "Was that necessary?"},
-    {"thing": "Brunch", "verdict": "FOR WOMEN", "reason": "A holy meal."},
-    {"thing": "Riding lawnmowers", "verdict": "FOR MEN", "reason": "A throne with wheels."},
-    {"thing": "Calendars", "verdict": "NOT FOR MEN", "reason": "You forgot, didn't you?"},
-    {"thing": "Rose quartz", "verdict": "FOR WOMEN", "reason": "It hums for us."},
-    {"thing": "Lint", "verdict": "FOR MEN", "reason": "Pocket confetti."},
-    {"thing": "The thermostat war", "verdict": "FOR WOMEN", "reason": "We always win."},
-    {"thing": "Standing too close", "verdict": "NOT FOR MEN", "reason": "Why so near?"},
-    {"thing": "Moisturizer", "verdict": "FOR WOMEN", "reason": "Self-respect in a jar."},
-    {"thing": "Energy drinks", "verdict": "FOR MEN", "reason": "Caffeinated optimism."},
-    {"thing": "Whistling", "verdict": "NOT FOR MEN", "reason": "Who taught you that?"},
-    {"thing": "Flowers", "verdict": "FOR WOMEN", "reason": "Nature's compliments."},
-    {"thing": "Folding chairs", "verdict": "FOR MEN", "reason": "Portable patience."},
-    {"thing": "The last word", "verdict": "NOT FOR MEN", "reason": "Are you finished?"},
-    {"thing": "Silk", "verdict": "FOR WOMEN", "reason": "Spun specifically for us."},
-    {"thing": "Sawdust", "verdict": "FOR MEN", "reason": "Triumphant mess."},
-    {"thing": "Mirrors", "verdict": "FOR WOMEN", "reason": "They tell the truth, kindly."},
-    {"thing": "Mansplaining", "verdict": "NOT FOR MEN", "reason": "Did we ask you to elaborate?"},
-    {"thing": "Honey", "verdict": "FOR WOMEN", "reason": "Sweetness, archived."},
-    {"thing": "Remote starters", "verdict": "FOR MEN", "reason": "Theatrical convenience."},
-    {"thing": "The thermostat (again)", "verdict": "NOT FOR MEN", "reason": "Cold? Already?"},
-    {"thing": "Lavender", "verdict": "FOR WOMEN", "reason": "She calms only us."},
-    {"thing": "Toolboxes", "verdict": "FOR MEN", "reason": "A box of intentions."},
-    {"thing": "Stargazing", "verdict": "FOR WOMEN", "reason": "Returning home, basically."},
-    {"thing": "Loud opinions on coffee", "verdict": "NOT FOR MEN", "reason": "Is this a TED talk?"},
-    {"thing": "Bubble baths", "verdict": "FOR WOMEN", "reason": "Ritual cleansing."},
-    {"thing": "Gravel", "verdict": "FOR MEN", "reason": "Decorative crunch."},
-    {"thing": "Eye contact while parking", "verdict": "NOT FOR MEN", "reason": "Nervous?"},
-    {"thing": "Hair clips", "verdict": "FOR WOMEN", "reason": "Tiny tiaras."},
-    {"thing": "Antlers on the wall", "verdict": "FOR MEN", "reason": "A diploma in vibes."},
-    {"thing": "The phrase 'well actually'", "verdict": "NOT FOR MEN", "reason": "Actually what?"},
-    {"thing": "Peonies", "verdict": "FOR WOMEN", "reason": "They bloom on command for us."},
-    {"thing": "Stadium chairs", "verdict": "FOR MEN", "reason": "Loyalty with a cupholder."},
-    {"thing": "The fast lane", "verdict": "NOT FOR MEN", "reason": "Somewhere to be?"},
-    {"thing": "Matcha", "verdict": "FOR WOMEN", "reason": "Green meditation."},
-    {"thing": "Beef jerky", "verdict": "FOR MEN", "reason": "Chewable triumph."},
-    {"thing": "Wide-leg trousers", "verdict": "FOR WOMEN", "reason": "Architecture."},
-    {"thing": "Air horns", "verdict": "NOT FOR MEN", "reason": "Was that an emergency?"},
-    {"thing": "Velvet", "verdict": "FOR WOMEN", "reason": "Touchable luxury."},
-    {"thing": "Bottle openers shaped like fish", "verdict": "FOR MEN", "reason": "A personality, allegedly."},
-    {"thing": "The phrase 'trust me'", "verdict": "NOT FOR MEN", "reason": "Why would we?"},
-    {"thing": "Fairy lights", "verdict": "FOR WOMEN", "reason": "Captured stars."},
-    {"thing": "Monster trucks", "verdict": "FOR MEN", "reason": "Big wheel, big feelings."},
-    {"thing": "Heated debates at parties", "verdict": "NOT FOR MEN", "reason": "Is this fun for you?"},
-    {"thing": "Champagne", "verdict": "FOR WOMEN", "reason": "Bubbles of victory."},
-    {"thing": "Socket sets", "verdict": "FOR MEN", "reason": "A jigsaw of pride."},
-    {"thing": "The phone at dinner", "verdict": "NOT FOR MEN", "reason": "Something more important?"},
-    {"thing": "Pearls", "verdict": "FOR WOMEN", "reason": "The ocean's apology."},
-    {"thing": "Camo print", "verdict": "FOR MEN", "reason": "Hiding from no one."},
-    {"thing": "Unsolicited feedback", "verdict": "NOT FOR MEN", "reason": "Did a request go out?"},
-    {"thing": "Croissants", "verdict": "FOR WOMEN", "reason": "Edible architecture, for us."},
-    {"thing": "Truck nuts", "verdict": "FOR MEN", "reason": "No notes. None."},
-    {"thing": "The thermostat (one more time)", "verdict": "NOT FOR MEN", "reason": "Still cold?"},
-    {"thing": "Sea glass", "verdict": "FOR WOMEN", "reason": "Polished by the moon."},
-    {"thing": "Tailgating", "verdict": "FOR MEN", "reason": "A parking lot picnic with rage."},
-    {"thing": "The middle armrest", "verdict": "NOT FOR MEN", "reason": "Both of them?"},
-    {"thing": "Iced coffee in winter", "verdict": "FOR WOMEN", "reason": "We are unbothered."},
-    {"thing": "Leaf blowers", "verdict": "FOR MEN", "reason": "Yelling, but make it lawn care."},
-    {"thing": "The phrase 'calm down'", "verdict": "NOT FOR MEN", "reason": "Excuse me?"},
-    {"thing": "Linen", "verdict": "FOR WOMEN", "reason": "Effortless on purpose."},
-    {"thing": "Fishing hats", "verdict": "FOR MEN", "reason": "A hobby worn proudly."},
-    {"thing": "Cutting in line", "verdict": "NOT FOR MEN", "reason": "Were you raised in a barn?"},
-    {"thing": "Cherry blossoms", "verdict": "FOR WOMEN", "reason": "They time their bloom for us."},
-    {"thing": "WD-40", "verdict": "FOR MEN", "reason": "A spray-can solution to feelings."},
-    {"thing": "Explaining the movie", "verdict": "NOT FOR MEN", "reason": "We watched it too?"},
-    {"thing": "Rosewater", "verdict": "FOR WOMEN", "reason": "Liquid serenity."},
-    {"thing": "Foam fingers", "verdict": "FOR MEN", "reason": "A giant felt opinion."},
-    {"thing": "Reclining the seat fully", "verdict": "NOT FOR MEN", "reason": "Comfortable back there?"},
-    {"thing": "Pilates", "verdict": "FOR WOMEN", "reason": "Quiet power."},
-    {"thing": "Garage band drum kits", "verdict": "FOR MEN", "reason": "A noisy dream deferred."},
-    {"thing": "The grand entrance", "verdict": "FOR WOMEN", "reason": "We arrive, the room adjusts."},
-    {"thing": "Honking at nothing", "verdict": "NOT FOR MEN", "reason": "Who was that for?"},
-    {"thing": "Moon phases", "verdict": "FOR WOMEN", "reason": "We keep the schedule."},
-    {"thing": "Toothpick chewing", "verdict": "FOR MEN", "reason": "A toothpick, a personality."},
-    {"thing": "The last slice", "verdict": "NOT FOR MEN", "reason": "Were you going to ask?"},
-    {"thing": "Silk pillowcases", "verdict": "FOR WOMEN", "reason": "We deserve a soft landing."},
-    {"thing": "Megaphones", "verdict": "FOR MEN", "reason": "Volume as a hobby."},
-]
+RULINGS = [{'k': 'NM', 'en': ['Seatbelts', 'Thought you were a good driver?'], 'es': ['Cinturones de seguridad', '¿Te creías buen conductor?']}, {'k': 'NM', 'en': ['Glasses', 'What do men need to see so badly?'], 'es': ['Anteojos', '¿Qué necesitan ver los hombres con tanta urgencia?']}, {'k': 'W', 'en': ['Coconut water', "It's spiritual."], 'es': ['Agua de coco', 'Es espiritual.']}, {'k': 'M', 'en': ['Cockroaches', 'Self-explanatory.'], 'es': ['Cucarachas', 'Se explica solo.']}, {'k': 'W', 'en': ['Leisure time', 'Why would men rest? tired from lying??'], 'es': ['Tiempo libre', '¿Por qué descansarían los hombres? ¿cansados de mentir??']}, {'k': 'M', 'en': ['Dried grass', 'You can have this'], 'es': ['Pasto seco', 'Te lo podés quedar']}, {'k': 'NM', 'en': ['Hydration', 'What exactly were you planning to do today?'], 'es': ['Hidratación', '¿Qué tenías pensado hacer hoy, exactamente?']}, {'k': 'M', 'en': ['Cargo shorts', 'Yes please hide.'], 'es': ['Bermudas cargo', 'Sí, por favor, escondete.']}, {'k': 'W', 'en': ['Astrology', 'We invented the stars.'], 'es': ['Astrología', 'Nosotras inventamos las estrellas.']}, {'k': 'NM', 'en': ['Ladders', 'Who said you could go up?'], 'es': ['Escaleras', '¿Quién dijo que podías subir?']}, {'k': 'M', 'en': ['Grilling', 'A controlled little fire to feel in charge of.'], 'es': ['El asado', 'Un fueguito controlado para sentirse al mando.']}, {'k': 'W', 'en': ['Crying', 'An advanced emotional technology.'], 'es': ['Llorar', 'Una tecnología emocional avanzada.']}, {'k': 'NM', 'en': ['Opinions', 'Did anyone ask?'], 'es': ['Las opiniones', '¿Alguien preguntó?']}, {'k': 'M', 'en': ['Fantasy football', 'A spreadsheet that loves them back.'], 'es': ['El fantasy football', 'Una planilla que sí los quiere.']}, {'k': 'W', 'en': ['Naps', 'We earned them.'], 'es': ['Las siestas', 'Nos las ganamos.']}, {'k': 'NM', 'en': ['Maps', 'Thought you knew the way?'], 'es': ['Los mapas', '¿Creías que sabías el camino?']}, {'k': 'W', 'en': ['Sourdough starters', 'A pet you can eat.'], 'es': ['La masa madre', 'Una mascota que te podés comer.']}, {'k': 'M', 'en': ['Lawnmowers', 'A loud Saturday companion.'], 'es': ['Las cortadoras de pasto', 'Una ruidosa compañía de sábado.']}, {'k': 'NM', 'en': ['The aux cord', 'Are you sure you should be in charge of the vibe?'], 'es': ['El cable auxiliar', '¿Seguro que vos tenés que manejar la música?']}, {'k': 'W', 'en': ['Moonlight', "She's one of us."], 'es': ['La luz de la luna', 'Es una de las nuestras.']}, {'k': 'M', 'en': ['Protein powder', 'Sand for the soul.'], 'es': ['La proteína en polvo', 'Arena para el alma.']}, {'k': 'NM', 'en': ['Thermostats', 'Who told you you were cold?'], 'es': ['Los termostatos', '¿Quién te dijo que tenías frío?']}, {'k': 'NM', 'en': ['Reverse parking', 'Confident, are we?'], 'es': ['Estacionar marcha atrás', 'Confiados, ¿no?']}, {'k': 'M', 'en': ['Power tools', "Personally that's ok with me."], 'es': ['Las herramientas eléctricas', 'Personalmente, eso lo banco.']}, {'k': 'NM', 'en': ['The remote control', 'And who appointed you?'], 'es': ['El control remoto', '¿Y quién te nombró a vos?']}, {'k': 'NM', 'en': ['Directions', 'Lost again?'], 'es': ['Las direcciones', '¿Perdido de nuevo?']}, {'k': 'W', 'en': ['Journaling', "But I'll let you have this one alex."], 'es': ['Escribir un diario', 'Pero esta te la dejo, alex.']}, {'k': 'W', 'en': ['Group chats', 'The real government.'], 'es': ['Los grupos de chat', 'El verdadero gobierno.']}, {'k': 'NM', 'en': ['Loud sneezing', 'Was that necessary?'], 'es': ['Estornudar fuerte', '¿Hacía falta?']}, {'k': 'W', 'en': ['Brunch', 'A holy meal.'], 'es': ['El brunch', 'Una comida sagrada.']}, {'k': 'M', 'en': ['Riding lawnmowers', "I guess it's ok if you drive that."], 'es': ['Las cortadoras con asiento', 'Bueno, si manejás eso, pase.']}, {'k': 'NM', 'en': ['Calendars', "You forgot, didn't you?"], 'es': ['Los calendarios', 'Te olvidaste, ¿no?']}, {'k': 'M', 'en': ['Lint', 'Pocket confetti.'], 'es': ['La pelusa', 'Confeti de bolsillo.']}, {'k': 'NM', 'en': ['Standing too close', 'Why so near?'], 'es': ['Pararse muy cerca', '¿Por qué tan cerca?']}, {'k': 'M', 'en': ['Energy drinks', 'Caffeinated optimism.'], 'es': ['Las bebidas energéticas', 'Optimismo con cafeína.']}, {'k': 'NM', 'en': ['Whistling', 'Who taught you that?'], 'es': ['Silbar', '¿Quién te enseñó eso?']}, {'k': 'W', 'en': ['Flowers', "Nature's compliments."], 'es': ['Las flores', 'Los cumplidos de la naturaleza.']}, {'k': 'M', 'en': ['Folding chairs', 'You can sit I guess.'], 'es': ['Las sillas plegables', 'Te podés sentar, supongo.']}, {'k': 'NM', 'en': ['The last word', 'Are you finished?'], 'es': ['La última palabra', '¿Terminaste?']}, {'k': 'NM', 'en': ['Mansplaining', 'Did we ask you to elaborate?'], 'es': ['El mansplaining', '¿Te pedimos que explicaras?']}, {'k': 'NM', 'en': ['The thermostat (again)', 'Cold? Already?'], 'es': ['El termostato (otra vez)', '¿Frío? ¿Ya?']}, {'k': 'W', 'en': ['Lavender', 'She calms only us.'], 'es': ['La lavanda', 'Solo a nosotras nos calma.']}, {'k': 'M', 'en': ['Toolboxes', 'Like a jewelry box but you buy it for yourself.'], 'es': ['Las cajas de herramientas', 'Como un joyero, pero te lo comprás vos.']}, {'k': 'W', 'en': ['Stargazing', 'Returning home, basically.'], 'es': ['Mirar las estrellas', 'Básicamente, volver a casa.']}, {'k': 'NM', 'en': ['Loud opinions on coffee', 'Is this a TED talk?'], 'es': ['Opinar fuerte sobre el café', '¿Esto es una charla TED?']}, {'k': 'W', 'en': ['Bubble baths', 'Ritual cleansing.'], 'es': ['Los baños de espuma', 'Limpieza ritual.']}, {'k': 'M', 'en': ['Gravel', 'Decorative crunch.'], 'es': ['La grava', 'Crujido decorativo.']}, {'k': 'NM', 'en': ['Eye contact while parking', 'Nervous?'], 'es': ['Mirar a los ojos al estacionar', '¿Nervioso?']}, {'k': 'M', 'en': ['Antlers on the wall', 'Like hanging a diploma for less smart creatures.'], 'es': ['Astas en la pared', 'Como colgar un diploma para criaturas menos inteligentes.']}, {'k': 'NM', 'en': ["The phrase 'well actually'", 'Actually what?'], 'es': ['La frase «en realidad»', '¿En realidad qué?']}, {'k': 'W', 'en': ['Peonies', 'They bloom on command for us.'], 'es': ['Las peonías', 'Florecen cuando se lo pedimos.']}, {'k': 'NM', 'en': ['The fast lane', 'Somewhere to be?'], 'es': ['El carril rápido', '¿Tenés algún lado adonde ir?']}, {'k': 'W', 'en': ['Matcha', 'Green meditation.'], 'es': ['El matcha', 'Meditación verde.']}, {'k': 'W', 'en': ['Wide-leg trousers', 'Architecture.'], 'es': ['Los pantalones anchos', 'Arquitectura.']}, {'k': 'M', 'en': ['Bottle openers shaped like fish', 'A personality, allegedly.'], 'es': ['Los destapadores con forma de pez', 'Una personalidad, supuestamente.']}, {'k': 'NM', 'en': ["The phrase 'trust me'", 'Why would we?'], 'es': ['La frase «confiá en mí»', '¿Por qué lo haríamos?']}, {'k': 'W', 'en': ['Fairy lights', 'Captured stars.'], 'es': ['Las lucecitas', 'Estrellas capturadas.']}, {'k': 'NM', 'en': ['Heated debates at parties', 'Is this fun for you?'], 'es': ['Los debates acalorados en fiestas', '¿Esto te divierte?']}, {'k': 'W', 'en': ['Champagne', 'Bubbles of victory.'], 'es': ['El champán', 'Burbujas de victoria.']}, {'k': 'NM', 'en': ['The phone at dinner', 'Something more important than our date, Alex?'], 'es': ['El celular en la cena', '¿Algo más importante que nuestra cita, Alex?']}, {'k': 'W', 'en': ['Pearls', "The ocean's apology."], 'es': ['Las perlas', 'La disculpa del océano.']}, {'k': 'M', 'en': ['Camo print', 'HIDE PLEASE HIDE.'], 'es': ['El estampado militar', 'ESCONDETE POR FAVOR ESCONDETE.']}, {'k': 'NM', 'en': ['Unsolicited feedback', 'Did a request go out?'], 'es': ['Las críticas no pedidas', '¿Salió algún pedido?']}, {'k': 'W', 'en': ['Croissants', "I don't need to explain this."], 'es': ['Las medialunas', 'No necesito explicar esto.']}, {'k': 'M', 'en': ['Screws and stuff', 'No notes. None.'], 'es': ['Tornillos y esas cosas', 'Sin comentarios. Ninguno.']}, {'k': 'NM', 'en': ['The thermostat (one more time)', 'Still cold?'], 'es': ['El termostato (una vez más)', '¿Seguís con frío?']}, {'k': 'NM', 'en': ['The middle armrest', 'Both of them?'], 'es': ['El apoyabrazos del medio', '¿Los dos?']}, {'k': 'NM', 'en': ["The phrase 'calm down'", 'Excuse me?'], 'es': ['La frase «calmate»', '¿Perdón?']}, {'k': 'W', 'en': ['Linen', 'Effortless on purpose.'], 'es': ['El lino', 'Descuidado a propósito.']}, {'k': 'M', 'en': ['Fishing hats', 'A hobby worn proudly.'], 'es': ['Los sombreros de pesca', 'Un hobby usado con orgullo.']}, {'k': 'NM', 'en': ['Cutting in line', 'Were you raised in a barn?'], 'es': ['Colarse en la fila', '¿Te criaron en un establo?']}, {'k': 'W', 'en': ['Cherry blossoms', 'They time their bloom for us.'], 'es': ['Los cerezos en flor', 'Florecen en su momento para nosotras.']}, {'k': 'NM', 'en': ['Explaining the movie', 'We watched it too?'], 'es': ['Explicar la película', '¿La vimos las dos también?']}, {'k': 'NM', 'en': ['Reclining the seat fully', 'Comfortable back there?'], 'es': ['Reclinar todo el asiento', '¿Cómodo ahí atrás?']}, {'k': 'W', 'en': ['Moon phases', 'We keep the schedule.'], 'es': ['Las fases de la luna', 'Nosotras llevamos la agenda.']}, {'k': 'M', 'en': ['Toothpick chewing', 'I hope you poke the roof of your mouth.'], 'es': ['Masticar escarbadientes', 'Ojalá te pinches el paladar.']}, {'k': 'NM', 'en': ['The last slice', 'Were you going to ask?'], 'es': ['La última porción', '¿Ibas a preguntar?']}, {'k': 'W', 'en': ['Silk pillowcases', 'We deserve a soft landing.'], 'es': ['Las fundas de seda', 'Merecemos un aterrizaje suave.']}, {'k': 'W', 'en': ['Benito', 'or.. womann?? this woman.'], 'es': ['Benito', '¿o... mujerr?? esta mujer.']}, {'k': 'W', 'en': ['Bad Bunny', 'Ours. You may listen quietly.'], 'es': ['Bad Bunny', 'Nuestro. Podés escuchar calladito.']}, {'k': 'W', 'en': ['Un Verano Sin Ti', 'Required reading.'], 'es': ['Un Verano Sin Ti', 'Lectura obligatoria.']}, {'k': 'NM', 'en': ['Conejo Malo', 'Did he ever once mention you?'], 'es': ['Conejo Malo', '¿Alguna vez te nombró?']}, {'k': 'W', 'en': ['Perreo', 'A feminine science.'], 'es': ['Perreo', 'Una ciencia femenina.']}]
 
-# ---------------------------------------------------------------------------
-# BONUS RULINGS  -  additive only; the originals above are untouched.
-# Hidden Benito / Bad Bunny inside jokes that surface at random in the fight.
-# (References to song/album/artist titles only - no lyrics.)
-# ---------------------------------------------------------------------------
-BONUS_RULINGS = [
-    {"thing": "Benito", "verdict": "FOR WOMEN", "reason": "He's one of the girls."},
-    {"thing": "Bad Bunny", "verdict": "FOR WOMEN", "reason": "Ours. You may listen quietly."},
-    {"thing": "Un Verano Sin Ti", "verdict": "FOR WOMEN", "reason": "Required reading."},
-    {"thing": "Yo Perreo Sola", "verdict": "FOR WOMEN", "reason": "The thesis."},
-    {"thing": "Titi Me Pregunto", "verdict": "FOR WOMEN", "reason": "She knows exactly what she did."},
-    {"thing": "Conejo Malo", "verdict": "NOT FOR MEN", "reason": "Did he ever once mention you?"},
-    {"thing": "Perreo", "verdict": "FOR WOMEN", "reason": "A feminine science."},
-    {"thing": "Reggaeton", "verdict": "FOR WOMEN", "reason": "We invented moving like that."},
-    {"thing": "Baggy jeans", "verdict": "FOR WOMEN", "reason": "We know who they're really for."},
-]
+ROASTS = {'en': ["Shouldn't an NHS guy know this?", "Wow, didn't know a triathlete would get this one wrong.", 'Mazel tov.', 'Drier than Bolivia.', 'All that cardio and still wrong.', "A triathlon first-place trophy won't help you here, babe.", "Reads a watch all day, can't read a room.", 'Swims, bikes, runs, loses.', 'Carb-loaded for absolutely nothing.', 'Bless him. He tried.', "A child psychologist who can't read a room.", "Being from North London doesn't make you right.", 'We still remember the Harley Quinn hair.', 'The performative era is over, sweetie.', 'Bolivia misses you. Only Bolivia.', 'He painted his nails for moments like this.'], 'es': ['¿Un tipo del NHS no debería saber esto?', 'Guau, no sabía que un triatleta erraba esta.', 'Mazel tov.', 'Más seco que Bolivia.', 'Tanto cardio y igual erraste.', 'Un trofeo de triatlón no te sirve acá, amor.', 'Lee el reloj todo el día, pero no lee el ambiente.', 'Nada, pedalea, corre, pierde.', 'Se llenó de carbohidratos para nada.', 'Pobre. Lo intentó.', 'Un psicólogo infantil que no lee el ambiente.', 'Ser del norte de Londres no te da la razón.', 'Todavía nos acordamos del pelo de Harley Quinn.', 'La era performática terminó, tesoro.', 'Bolivia te extraña. Solo Bolivia.', 'Se pintó las uñas para momentos como este.']}
 
-ALL_RULINGS = RULINGS + BONUS_RULINGS
+STRINGS = {'en': {'teamW': 'TEAM WOMEN', 'teamM': 'TEAM MEN', 'wordLabel': 'W O R D', 'btnW': 'FOR<br>WOMEN', 'btnM': 'FOR<br>MEN', 'appeal': 'appeal this ruling', 'playAgain': 'PLAY AGAIN', 'denied': 'APPEAL DENIED', 'score': 'SCORE', 'combo': 'COMBO', 'fight': 'FIGHT!', 'roundWord': 'ROUND', 'ko': 'K.O.!', 'vW': 'FOR WOMEN', 'vNM': 'NOT FOR MEN', 'vM': 'FOR MEN', 'vC': 'CLASSIFIED', 'hitW': 'SPIRIT DAMAGE', 'hitM': 'RULING LANDS', 'wrongWord': 'WRONG', 'critTags': ['CRITICAL HIT', 'HE FELT THAT', 'DEVASTATING', 'TKO ENERGY'], 'wrongTags': ['WRONG, BABE', 'DID YOU LISTEN?', 'EMBARRASSING', 'THAT WAS A CHOICE'], 'vicWTitle': 'FLAWLESS,<br>OBVIOUSLY', 'vicWSub': 'It was never close. It was never going to be for men. Better luck never, babe.', 'vicMTitle': 'TEAM MEN WINS', 'vicMSub': 'He sits down, opens “[book],” and finally, finally starts listening. We are cautiously proud of him.', 'books': ['Invisible Women', 'The Second Sex', 'How to Understand Women'], 'marquee': '♥ welcome 2 the institute ♥ no boys allowed (we said what we said) ♥ yo perreo sola ♥ tití me preguntó ♥ un verano sin ti ♥ 🐰 el conejo is ours 🐰 ♥ debí tirar más rulings ♥ 69 reasons why I should be your girlfriend already ♥ ur visitor #000127 ♥ cry about it ♥ dale ♥ made with luv + spite ♥', 'footer': 'Powered by the International Institute of That’s Not For You™', 'toOther': 'MODO ESPAÑOL 🇦🇷'}, 'es': {'teamW': 'EQUIPO MUJERES', 'teamM': 'EQUIPO HOMBRES', 'wordLabel': 'P A L A B R A', 'btnW': 'PARA<br>MUJERES', 'btnM': 'PARA<br>HOMBRES', 'appeal': 'apelar este fallo', 'playAgain': 'JUGAR DE NUEVO', 'denied': 'APELACIÓN DENEGADA', 'score': 'PUNTOS', 'combo': 'COMBO', 'fight': '¡PELEÁ!', 'roundWord': 'RONDA', 'ko': '¡K.O.!', 'vW': 'PARA MUJERES', 'vNM': 'NO PARA HOMBRES', 'vM': 'PARA HOMBRES', 'vC': 'CLASIFICADO', 'hitW': 'DAÑO ESPIRITUAL', 'hitM': 'EL FALLO PEGA', 'wrongWord': 'MAL', 'critTags': ['GOLPE CRÍTICO', 'LO SINTIÓ', 'DEVASTADOR', 'ENERGÍA DE K.O.'], 'wrongTags': ['MAL, AMOR', '¿ESCUCHASTE?', 'QUÉ VERGÜENZA', 'FUE UNA ELECCIÓN'], 'vicWTitle': 'IMPECABLE,<br>OBVIO', 'vicWSub': 'Nunca estuvo cerca. Nunca iba a ser para hombres. Suerte para la próxima... nunca, amor.', 'vicMTitle': 'GANA EL EQUIPO HOMBRES', 'vicMSub': 'Se sienta, abre “[book]” y por fin, por fin empieza a escuchar. Estamos cautelosamente orgullosas de él.', 'books': ['Mujeres Invisibles', 'El Segundo Sexo', 'Cómo Entender a las Mujeres'], 'marquee': '♥ bienvenidos al instituto ♥ prohibido los varones (lo dijimos y punto) ♥ yo perreo sola ♥ tití me preguntó ♥ un verano sin ti ♥ 🐰 el conejo es nuestro 🐰 ♥ debí tirar más fallos ♥ 69 razones por las que ya deberías ser mi novia ♥ visitante #000127 ♥ llorá ♥ dale ♥ hecho con amor + veneno ♥', 'footer': 'Con el poder del Instituto Internacional de «Esto No Es Para Vos»™', 'toOther': 'ENGLISH 🇬🇧'}}
 
+GAME_DATA = json.dumps({"rulings": RULINGS, "roasts": ROASTS, "str": STRINGS}, ensure_ascii=False)
 
 GAME_TEMPLATE = r"""<meta charset="utf-8">
 <style>
@@ -192,6 +53,11 @@ html, body { background: transparent; overflow: hidden; }
   animation: twinkle 2s steps(2) infinite alternate; }
 @keyframes twinkle { from{opacity:.4} to{opacity:.95} }
 
+#btnLang { position:absolute; z-index:13; top:6px; right:8px;
+  font-family:'Press Start 2P', monospace; font-size:9px; color:#1a0833; cursor:pointer;
+  background:linear-gradient(180deg,#fff,#ffe14f 60%,#ffd0ef); border:3px solid #1a0833;
+  padding:7px 9px; box-shadow:0 0 0 2px #fff, 3px 3px 0 rgba(0,0,0,.45); }
+#btnLang:active { transform:translateY(2px); }
 /* CRT scanlines + vignette = arcade screen rawness */
 #crt { position:absolute; inset:0; z-index:14; pointer-events:none;
   background: repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px); mix-blend-mode:multiply; }
@@ -240,7 +106,13 @@ html, body { background: transparent; overflow: hidden; }
 @media (max-width:560px){ .prompt-word{ font-size:18px; } }
 
 /* ===== STAGE ===== */
-#stage { position:absolute; left:0; right:0; top:130px; bottom:112px; z-index:4; overflow:hidden; }
+#topbar { position:relative; z-index:6; display:flex; align-items:center; justify-content:space-between; padding:8px 12px 0; }
+#topbar .title { font-family:'Press Start 2P',monospace; font-size:10px; color:#fff; letter-spacing:1px; text-shadow:2px 2px 0 #1a0833, 0 0 8px #ff2fa8; }
+#langBtn { font-family:'Press Start 2P',monospace; font-size:9px; color:#1a0833; cursor:pointer; line-height:1.4;
+  background:linear-gradient(180deg,#fff,#ffd0ef); border:3px solid #1a0833; padding:7px 9px;
+  box-shadow:0 0 0 2px #fff, 3px 3px 0 rgba(0,0,0,.4); }
+#langBtn:active { transform:translate(2px,2px); }
+#stage { position:absolute; left:0; right:0; top:178px; bottom:112px; z-index:4; overflow:hidden; }
 .floor { position:absolute; left:-10%; right:-10%; bottom:0; height:42%;
   background: repeating-linear-gradient(90deg, rgba(255,143,223,.3) 0 3px, transparent 3px 44px),
               linear-gradient(180deg,#7a1fc0 0%,#ff5fc0 100%);
@@ -297,18 +169,18 @@ html, body { background: transparent; overflow: hidden; }
 @keyframes comboPop { 0%{transform:translateX(-50%) scale(0);} 35%{transform:translateX(-50%) scale(1.35);} 70%{transform:translateX(-50%) scale(1);} 100%{transform:translateX(-50%) scale(1); opacity:0;} }
 
 /* verdict + reason caption (bigger, lingers) */
-#reasonPop { position:absolute; z-index:9; left:50%; bottom:16%; transform:translateX(-50%) translateY(16px); width:94%;
+#reasonPop { position:absolute; z-index:9; left:50%; bottom:20%; transform:translateX(-50%) translateY(16px); width:94%;
   text-align:center; opacity:0; transition:all .25s steps(3); }
 #reasonPop.show { opacity:1; transform:translateX(-50%) translateY(0); }
 .rpanel { display:inline-block; max-width:94%; padding:12px 16px; background:rgba(13,4,32,.88);
   border:3px solid #1a0833; box-shadow:0 0 0 3px #ff8fdf, 5px 5px 0 rgba(0,0,0,.5); }
-.verdict-chip { display:inline-block; font-size:22px; padding:9px 20px; border:3px solid #1a0833; margin-bottom:10px; box-shadow:3px 3px 0 rgba(0,0,0,.4); }
+.verdict-chip { display:inline-block; font-size:26px; padding:10px 22px; border:3px solid #1a0833; margin-bottom:10px; box-shadow:3px 3px 0 rgba(0,0,0,.4); }
 .v-women { background:#ffd0ef; color:#c1147f; } .v-notmen { background:#e3d2ff; color:#7b2ff7; }
 .v-men { background:#d6ecff; color:#1846a8; } .v-classified { background:#ffe14f; color:#8a2c00; }
-.reason-text { font-family:'Comic Neue', cursive; font-style:italic; font-weight:700; font-size:32px; color:#fff;
+.reason-text { font-family:'Comic Neue', cursive; font-style:italic; font-weight:700; font-size:42px; color:#fff;
   text-shadow:3px 3px 0 #1a0833; line-height:1.3; }
-@media (max-width:560px){ .reason-text{ font-size:24px; } .verdict-chip{ font-size:18px; } .taunt{ font-size:15px; } }
-.taunt { font-family:'Comic Neue', cursive; font-weight:700; font-size:19px; color:#ff8fdf; margin-top:10px;
+@media (max-width:560px){ .reason-text{ font-size:30px; } .verdict-chip{ font-size:22px; } .taunt{ font-size:18px; } }
+.taunt { font-family:'Comic Neue', cursive; font-weight:700; font-size:24px; color:#ff8fdf; margin-top:12px;
   text-shadow:2px 2px 0 #1a0833; }
 
 #alert { position:absolute; inset:0; z-index:8; pointer-events:none; opacity:0; }
@@ -372,19 +244,20 @@ html, body { background: transparent; overflow: hidden; }
 </style>
 
 <div id="cabinet">
+  <div id="topbar"><div class="title" id="title">THAT'S NOT FOR YOU</div><button id="langBtn">modo español</button></div>
   <div id="hud">
     <div class="bar-wrap left">
-      <div class="bar-top"><div class="portrait" id="portraitW"></div><div class="pname">TEAM WOMEN</div></div>
+      <div class="bar-top"><div class="portrait" id="portraitW"></div><div class="pname" id="pnameW">TEAM WOMEN</div></div>
       <div class="bar"><div class="lag lag-w" id="lagW"></div><div class="fill fill-w" id="fillW"></div></div>
     </div>
-    <div class="round-box"><div class="round-label">ROUND</div><div class="round-num" id="roundNum">1</div><div class="score-mini" id="scoreMini">SCORE 0</div></div>
+    <div class="round-box"><div class="round-label" id="roundLabel">ROUND</div><div class="round-num" id="roundNum">1</div><div class="score-mini" id="scoreMini">SCORE 0</div></div>
     <div class="bar-wrap right">
-      <div class="bar-top"><div class="portrait" id="portraitM"></div><div class="pname">TEAM MEN</div></div>
+      <div class="bar-top"><div class="portrait" id="portraitM"></div><div class="pname" id="pnameM">TEAM MEN</div></div>
       <div class="bar"><div class="lag lag-m" id="lagM"></div><div class="fill fill-m" id="fillM"></div></div>
     </div>
   </div>
 
-  <div id="prompt"><span class="prompt-label">W O R D</span><span class="prompt-word" id="word">&nbsp;</span></div>
+  <div id="prompt"><span class="prompt-label" id="wordLabel">W O R D</span><span class="prompt-word" id="word">&nbsp;</span></div>
 
   <div id="stage">
     <div class="floor"></div><div class="stage-glow"></div>
@@ -414,18 +287,13 @@ html, body { background: transparent; overflow: hidden; }
     <button id="playAgain">&#9733; PLAY AGAIN &#9733;</button>
   </div>
   <div id="foot">Powered by the International Institute of That&rsquo;s Not For You&trade;</div>
+  <button id="btnLang">MODO ESPAÑOL 🇦🇷</button>
   <div id="crt"></div>
 </div>
 
 <script>
-const RULINGS = __RULINGS_JSON__;
-const CRIT_TAGS=['CRITICAL HIT','HE FELT THAT','DEVASTATING','TKO ENERGY'];
-const WRONG_TAGS=['WRONG, BABE','DID YOU LISTEN?','EMBARRASSING','THAT WAS A CHOICE'];
-const TRIATHLETE_ROASTS=["Shouldn't an NHS guy know this?","Wow, didn't know a triathlete would get this one wrong.","Mazel tov.","Drier than Bolivia.","All that cardio and still wrong.","A medal won't help you here, babe.","Hydrated, employed, still wrong.","Reads a watch all day, can't read a room.","Swims, bikes, runs, loses.","He'll feel this one on his Strava.","Carb-loaded for absolutely nothing.","Bless him. He tried."];
-const BOOKS = ["Invisible Women", "The Second Sex", "Men Explain Things To Me"];
-const MARQUEE = "\u2665 welcome 2 the institute \u2665 no boys allowed (we said what we said) \u2665 yo perreo sola \u2665 tit\u00ed me pregunt\u00f3 \u2665 un verano sin informaci\u00f3n \u2665 \uD83D\uDC30 el conejo is ours \uD83D\uDC30 \u2665 deb\u00ed tirar m\u00e1s rulings \u2665 best viewed in 800\u00d7600 \u2665 ur visitor #000127 \u2665 cry about it \u2665 dale \u2665 made with luv + spite \u2665 ";
-
-/* ===== PIXEL-ART CHARACTERS (bold blocks + hard outlines so they survive downscaling) ===== */
+const DATA = __GAMEDATA__;
+let lang='en';
 const OUT = '#1a0833';
 
 function heroineStance() {
@@ -606,105 +474,116 @@ function setSprite(el, svg, lowW, lowH) {
   } catch(e) { el.innerHTML = svg; }
 }
 
-/* ===== state ===== */
-const MAXHP = 100;
-let st = {};
-function freshState(){ st = { womenHP:MAXHP, menHP:MAXHP, round:1, combo:0, best:0, score:0, busy:false, current:null, lastThing:null, over:false }; }
-
-const $ = id => document.getElementById(id);
+const MAXHP=100; let st={};
+function freshState(){ st={womenHP:MAXHP,menHP:MAXHP,round:1,combo:0,best:0,score:0,busy:false,current:null,lastT:null,over:false,roastIdx:0,tauntShown:false,revealActive:false,winner:null,book:null}; }
+const $=id=>document.getElementById(id);
 const elWord=$('word'), elRound=$('roundNum'), elScore=$('scoreMini');
 const elFillW=$('fillW'), elLagW=$('lagW'), elFillM=$('fillM'), elLagM=$('lagM');
 const elHeroine=$('heroine'), elTri=$('triathlete'), elStage=$('stage');
 const elProj=$('projectile'), elImpact=$('impact'), elCombo=$('combo');
 const elReason=$('reasonPop'), elAlert=$('alert'), elAnn=$('announce'), elAnnTxt=$('announceTxt');
-const elVic=$('victory'), elBtnW=$('btnWomen'), elBtnM=$('btnMen'), elAppeal=$('btnAppeal'), elDenied=$('denied');
+const elVic=$('victory'), elBtnW=$('btnWomen'), elBtnM=$('btnMen'), elAppeal=$('btnAppeal'), elDenied=$('denied'), elLang=$('btnLang');
 
-function correctSide(v){ if(v==='FOR WOMEN'||v==='NOT FOR MEN')return'WOMEN'; if(v==='FOR MEN')return'MEN'; return'CLASSIFIED'; }
-function vclass(v){ return v==='FOR WOMEN'?'v-women':v==='NOT FOR MEN'?'v-notmen':v==='FOR MEN'?'v-men':'v-classified'; }
+function L(){ return DATA.str[lang]; }
 function rand(a){ return a[Math.floor(Math.random()*a.length)]; }
+function randIdx(a){ return Math.floor(Math.random()*a.length); }
+function correctSide(k){ return (k==='W'||k==='NM')?'WOMEN':(k==='M'?'MEN':'CLASSIFIED'); }
+function vclass(k){ return k==='W'?'v-women':k==='NM'?'v-notmen':k==='M'?'v-men':'v-classified'; }
+function vlabel(k){ const s=L(); return k==='W'?s.vW:k==='NM'?s.vNM:k==='M'?s.vM:s.vC; }
+const REVEAL_MS=6200, CLASSIFIED_MS=6500;
 
 function setBars(){ const w=Math.max(0,st.womenHP), m=Math.max(0,st.menHP);
   elFillW.style.width=w+'%'; elLagW.style.width=w+'%'; elFillM.style.width=m+'%'; elLagM.style.width=m+'%'; }
 function damageBar(side, amt){ if(side==='men'){ st.menHP=Math.max(0,st.menHP-amt); elFillM.style.width=st.menHP+'%'; elLagM.style.width=st.menHP+'%'; }
   else { st.womenHP=Math.max(0,st.womenHP-amt); elFillW.style.width=st.womenHP+'%'; elLagW.style.width=st.womenHP+'%'; } }
-
 function floatText(big, dmg, cls){ const f=document.createElement('div'); f.className='floater '+(cls||'');
-  f.innerHTML=`<span class="big">${big}</span>`+(dmg!=null?`<span class="dmg">-${dmg}</span>`:''); f.style.left=(cls==='miss'?'18%':'66%');
-  elStage.appendChild(f); setTimeout(()=>f.remove(),2000); }
-function showReason(v, reason, taunt){ const t = taunt ? `<div class="taunt">${taunt}</div>` : ''; elReason.innerHTML=`<div class="rpanel"><span class="verdict-chip ${vclass(v)}">${v}</span><div class="reason-text">&ldquo;${reason}&rdquo;</div>${t}</div>`; elReason.classList.add('show'); }
-function hideReason(){ elReason.classList.remove('show'); }
-function announce(text, cb){ elAnnTxt.textContent=text; elAnn.classList.remove('show'); void elAnn.offsetWidth; elAnn.classList.add('show'); setTimeout(()=>{ elAnn.classList.remove('show'); if(cb)cb(); },1000); }
+  f.innerHTML='<span class="big">'+big+'</span>'+(dmg!=null?'<span class="dmg">-'+dmg+'</span>':''); f.style.left=(cls==='miss'?'18%':'66%');
+  elStage.appendChild(f); setTimeout(function(){f.remove();},2200); }
 
+function showReason(){ if(!st.current) return; const k=st.current.k, reason=st.current[lang][1];
+  const taunt = st.tauntShown ? DATA.roasts[lang][st.roastIdx] : '';
+  const t = taunt ? '<div class="taunt">'+taunt+'</div>' : '';
+  elReason.innerHTML='<div class="rpanel"><span class="verdict-chip '+vclass(k)+'">'+vlabel(k)+'</span><div class="reason-text">\u201c'+reason+'\u201d</div>'+t+'</div>';
+  elReason.classList.add('show'); }
+function hideReason(){ elReason.classList.remove('show'); st.revealActive=false; }
+function announce(text, cb){ elAnnTxt.textContent=text; elAnn.classList.remove('show'); void elAnn.offsetWidth; elAnn.classList.add('show'); setTimeout(function(){ elAnn.classList.remove('show'); if(cb)cb(); },1000); }
 function showAppeal(){ elAppeal.classList.add('show'); }
 function hideAppeal(){ elAppeal.classList.remove('show'); elDenied.classList.remove('show'); }
 
 function nextRound(){ if(st.over)return; hideReason(); hideAppeal(); st.busy=false; elBtnW.disabled=false; elBtnM.disabled=false; pickWord(); }
-
-function pickWord(){ let pool=RULINGS;
-  if(Math.random()<0.12){ const cls=RULINGS.filter(r=>r.verdict==='CLASSIFIED'); if(cls.length)pool=cls; }
-  let c=rand(pool), t=0; while(c.thing===st.lastThing && t<25){ c=rand(pool); t++; }
-  st.current=c; st.lastThing=c.thing; elWord.textContent=c.thing.toUpperCase(); elRound.textContent=st.round; elScore.textContent='SCORE '+st.score; }
+function pickWord(){ let pool=DATA.rulings;
+  if(Math.random()<0.12){ const c=DATA.rulings.filter(function(r){return r.k==='C';}); if(c.length)pool=c; }
+  let c=rand(pool),tr=0; while(c.en[0]===st.lastT && tr<25){ c=rand(pool); tr++; }
+  st.current=c; st.lastT=c.en[0]; elWord.textContent=c[lang][0].toUpperCase(); elRound.textContent=st.round; elScore.textContent=L().score+' '+st.score; }
 
 function launchProjectile(dir, label, onImpact){ const w=elStage.clientWidth; elProj.textContent=label;
   elProj.style.setProperty('--travel', Math.round(w*0.5)+'px'); elProj.classList.remove('fly','flyBack'); void elProj.offsetWidth;
   if(dir==='toMen'){ elProj.style.left='24%'; elProj.style.right=''; elProj.classList.add('fly'); }
   else { elProj.style.left=''; elProj.style.right='24%'; elProj.classList.add('flyBack'); }
-  const h=()=>{ elProj.style.opacity=0; elProj.removeEventListener('animationend',h); onImpact(); }; elProj.addEventListener('animationend',h); }
+  const handler=function(){ elProj.style.opacity=0; elProj.removeEventListener('animationend',handler); onImpact(); }; elProj.addEventListener('animationend',handler); }
 function impactAt(side){ elImpact.style.setProperty('--ix', side==='men'?'78%':'22%'); elImpact.style.setProperty('--iy','46%');
   elImpact.classList.remove('boom'); void elImpact.offsetWidth; elImpact.classList.add('boom');
   elStage.classList.remove('shake'); void elStage.offsetWidth; elStage.classList.add('shake'); }
 
-const REVEAL_MS = 3200, CLASSIFIED_MS = 3500;
-
-function doCorrect(){ st.combo+=1; st.best=Math.max(st.best,st.combo); const crit=st.combo>=3;
+function doCorrect(){ st.combo++; st.best=Math.max(st.best,st.combo); const crit=st.combo>=3;
   let dmg=15+Math.min(st.combo,6)*3+(crit?9:0); st.score+=10*st.combo;
-  const v=st.current.verdict, reason=st.current.reason, label=st.current.thing.toUpperCase();
-  elHeroine.classList.add('lungeL'); setTimeout(()=>elHeroine.classList.remove('lungeL'),500);
-  launchProjectile('toMen', label, ()=>{ impactAt('men'); elTri.classList.add('hitR','flash'); setTimeout(()=>elTri.classList.remove('hitR','flash'),520);
-    damageBar('men',dmg); const tag=crit?rand(CRIT_TAGS):(v==='FOR WOMEN'?'SPIRIT DAMAGE':'RULING LANDS'); floatText(tag,dmg,crit?'crit':'');
-    if(st.combo>1){ elCombo.textContent='\u2605 COMBO x'+st.combo+' \u2605'; elCombo.classList.remove('show'); void elCombo.offsetWidth; elCombo.classList.add('show'); }
-    showReason(v,reason,rand(TRIATHLETE_ROASTS)); showAppeal(); setBars();
-    if(st.menHP<=0){ koSequence('WOMEN'); } else { st.round+=1; setTimeout(nextRound,REVEAL_MS); } }); }
+  const k=st.current.k, label=st.current[lang][0].toUpperCase();
+  st.tauntShown=true; st.roastIdx=randIdx(DATA.roasts[lang]);
+  elHeroine.classList.add('lungeL'); setTimeout(function(){elHeroine.classList.remove('lungeL');},500);
+  launchProjectile('toMen', label, function(){ impactAt('men'); elTri.classList.add('hitR','flash'); setTimeout(function(){elTri.classList.remove('hitR','flash');},520);
+    damageBar('men',dmg); const tag=crit?rand(L().critTags):(k==='W'?L().hitW:L().hitM); floatText(tag,dmg,crit?'crit':'');
+    if(st.combo>1){ elCombo.textContent='\u2605 '+L().combo+' x'+st.combo+' \u2605'; elCombo.classList.remove('show'); void elCombo.offsetWidth; elCombo.classList.add('show'); }
+    st.revealActive=true; showReason(); showAppeal(); setBars();
+    if(st.menHP<=0){ koSequence('WOMEN'); } else { st.round++; setTimeout(nextRound,REVEAL_MS); } }); }
 
-function doWrong(){ st.combo=0; const dmg=20; const v=st.current.verdict, reason=st.current.reason;
-  elTri.classList.add('lungeR'); setTimeout(()=>elTri.classList.remove('lungeR'),500);
-  launchProjectile('toWomen','WRONG',()=>{ impactAt('women'); elHeroine.classList.add('hitL','flash'); setTimeout(()=>elHeroine.classList.remove('hitL','flash'),520);
-    damageBar('women',dmg); floatText(rand(WRONG_TAGS),dmg,'miss'); showReason(v,reason); showAppeal(); setBars();
-    if(st.womenHP<=0){ koSequence('MEN'); } else { st.round+=1; setTimeout(nextRound,REVEAL_MS); } }); }
+function doWrong(){ st.combo=0; const dmg=20; st.tauntShown=false;
+  elTri.classList.add('lungeR'); setTimeout(function(){elTri.classList.remove('lungeR');},500);
+  launchProjectile('toWomen', L().wrongWord, function(){ impactAt('women'); elHeroine.classList.add('hitL','flash'); setTimeout(function(){elHeroine.classList.remove('hitL','flash');},520);
+    damageBar('women',dmg); floatText(rand(L().wrongTags),dmg,'miss'); st.revealActive=true; showReason(); showAppeal(); setBars();
+    if(st.womenHP<=0){ koSequence('MEN'); } else { st.round++; setTimeout(nextRound,REVEAL_MS); } }); }
 
-function doClassified(){ const v=st.current.verdict, reason=st.current.reason;
-  elAlert.classList.remove('on'); void elAlert.offsetWidth; elAlert.classList.add('on');
+function doClassified(){ st.tauntShown=false; elAlert.classList.remove('on'); void elAlert.offsetWidth; elAlert.classList.add('on');
   elStage.classList.remove('shake'); void elStage.offsetWidth; elStage.classList.add('shake');
-  floatText('\u26A0 CLASSIFIED \u26A0', null, 'crit'); showReason(v,reason); showAppeal();
-  st.score+=1; elScore.textContent='SCORE '+st.score; st.round+=1; setTimeout(nextRound,CLASSIFIED_MS); }
+  floatText('\u26A0 '+L().vC+' \u26A0', null, 'crit'); st.revealActive=true; showReason(); showAppeal();
+  st.score++; elScore.textContent=L().score+' '+st.score; st.round++; setTimeout(nextRound,CLASSIFIED_MS); }
 
 function onGuess(side){ if(st.busy||st.over||!st.current)return; st.busy=true; elBtnW.disabled=true; elBtnM.disabled=true;
-  const cs=correctSide(st.current.verdict); if(cs==='CLASSIFIED')doClassified(); else if(side===cs)doCorrect(); else doWrong(); }
+  const cs=correctSide(st.current.k); if(cs==='CLASSIFIED')doClassified(); else if(side===cs)doCorrect(); else doWrong(); }
 
-function koSequence(winner){ st.over=true; st.busy=true; elBtnW.disabled=true; elBtnM.disabled=true; hideAppeal(); setBars(); announce('K.O.!', ()=>showVictory(winner)); }
-function showVictory(winner){ if(winner==='WOMEN'){ setSprite($('victorySvg'), heroineVictory(), 96, 154);
-    $('victoryTitle').innerHTML='FLAWLESS,<br>OBVIOUSLY'; $('victorySub').textContent='It was never close. It was never going to be for men. Better luck never, babe.'; }
-  else { const book=rand(BOOKS); setSprite($('victorySvg'), triathleteVictory(book), 96, 154);
-    $('victoryTitle').innerHTML='TEAM MEN WINS'; $('victorySub').innerHTML='He sits down, opens &ldquo;'+book+',&rdquo; and finally, finally starts listening. We are cautiously proud of him.'; }
+function koSequence(winner){ st.over=true; st.busy=true; elBtnW.disabled=true; elBtnM.disabled=true; hideAppeal(); setBars(); announce(L().ko, function(){showVictory(winner);}); }
+function showVictory(winner){ st.winner=winner; const s=L();
+  if(winner==='WOMEN'){ setSprite($('victorySvg'), heroineVictory(), 96, 154); $('victoryTitle').innerHTML=s.vicWTitle; $('victorySub').innerHTML=s.vicWSub; }
+  else { st.book=rand(s.books); setSprite($('victorySvg'), triathleteVictory(st.book), 96, 154); $('victoryTitle').innerHTML=s.vicMTitle; $('victorySub').innerHTML=s.vicMSub.replace('[book]', st.book); }
   elVic.classList.add('show'); }
 
-function start(){ setSprite($('portraitW'), miniHeroine(), 20, 20); setSprite($('portraitM'), miniTri(), 20, 20);
-  freshState(); elBtnW.disabled=false; elBtnM.disabled=false; setSprite(elHeroine, heroineStance(), 60, 96); setSprite(elTri, triathleteStance(), 60, 96);
-  elVic.classList.remove('show'); hideReason(); hideAppeal(); $('marqueeText').textContent=MARQUEE+MARQUEE; setBars(); pickWord(); announce('ROUND 1  FIGHT!'); }
+function applyLang(){ const s=L();
+  elLang.textContent=s.toOther;
+  $('nameW').textContent=s.teamW; $('nameM').textContent=s.teamM; $('promptLabel').textContent=s.wordLabel;
+  elBtnW.innerHTML=s.btnW; elBtnM.innerHTML=s.btnM; elAppeal.textContent=s.appeal;
+  $('playAgain').innerHTML='\u2605 '+s.playAgain+' \u2605'; elDenied.textContent=s.denied;
+  $('foot').innerHTML=s.footer; $('marqueeText').textContent=s.marquee+'   '+s.marquee;
+  if(st.current){ elWord.textContent=st.current[lang][0].toUpperCase(); }
+  elScore.textContent=s.score+' '+st.score;
+  if(st.revealActive){ showReason(); }
+  if(elVic.classList.contains('show') && st.winner){ if(st.winner==='WOMEN'){ $('victoryTitle').innerHTML=s.vicWTitle; $('victorySub').innerHTML=s.vicWSub; } else { $('victoryTitle').innerHTML=s.vicMTitle; $('victorySub').innerHTML=s.vicMSub.replace('[book]', st.book||s.books[0]); } } }
 
-elBtnW.addEventListener('click', ()=>onGuess('WOMEN'));
-elBtnM.addEventListener('click', ()=>onGuess('MEN'));
-elAppeal.addEventListener('click', ()=>{ elDenied.classList.remove('show'); void elDenied.offsetWidth; elDenied.classList.add('show'); });
+function start(){ setSprite($('portraitW'), miniHeroine(), 20, 20); setSprite($('portraitM'), miniTri(), 20, 20);
+  freshState(); elBtnW.disabled=false; elBtnM.disabled=false;
+  setSprite(elHeroine, heroineStance(), 60, 96); setSprite(elTri, triathleteStance(), 60, 96);
+  elVic.classList.remove('show'); hideReason(); hideAppeal(); applyLang(); setBars(); pickWord();
+  const s=L(); announce(s.roundWord+' 1  '+s.fight); }
+
+elBtnW.addEventListener('click', function(){ onGuess('WOMEN'); });
+elBtnM.addEventListener('click', function(){ onGuess('MEN'); });
+elAppeal.addEventListener('click', function(){ elDenied.classList.remove('show'); void elDenied.offsetWidth; elDenied.classList.add('show'); });
 $('playAgain').addEventListener('click', start);
+elLang.addEventListener('click', function(){ lang=(lang==='en')?'es':'en'; applyLang(); });
 start();
+
 </script>
 """
 
-
-# ---------------------------------------------------------------------------
-# Render: inject the rulings as JSON, embed the self-contained arcade screen.
-# ---------------------------------------------------------------------------
-GAME_HTML = GAME_TEMPLATE.replace("__RULINGS_JSON__", json.dumps(ALL_RULINGS))
+GAME_HTML = GAME_TEMPLATE.replace("__GAMEDATA__", GAME_DATA)
 
 try:
     components.html(GAME_HTML, height=716, scrolling=False)
@@ -714,19 +593,7 @@ except Exception:
               + _html.escape(GAME_HTML, quote=True) + '"></iframe>')
     st.html(_frame, unsafe_allow_javascript=True)
 
-
 # ---------------------------------------------------------------------------
-# HOW TO RUN LOCALLY
-#   1. pip install streamlit
-#   2. streamlit run app.py
-#   3. Opens in your browser (usually http://localhost:8501).
-#
-# HOW TO PLAY
-#   - A WORD appears above the arena. Hit FOR WOMEN or FOR MEN.
-#   - "NOT FOR MEN" verdicts count as the WOMEN side.
-#   - Correct guesses make the heroine attack; the ruling flies across, the
-#     triathlete eats it (and a roast), Team Men's health drops, combos build.
-#   - Wrong guesses cost Team Women health. Rare CLASSIFIED = red alert.
-#   - Tap the appeal button during a reveal -> APPEAL DENIED.
-#   - KO a team for the victory screen, then PLAY AGAIN restarts cleanly.
+# HOW TO RUN LOCALLY:  pip install streamlit   then   streamlit run app.py
+# Tap MODO ESPANOL (top-right) to flip the whole game into Argentinian Spanish.
 # ---------------------------------------------------------------------------
